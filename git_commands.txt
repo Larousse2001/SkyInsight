@@ -1,0 +1,19 @@
+1) Clone
+git clone https://github.com/Larousse2001/SkyInsight.git
+
+cd SkyInsight
+
+2) Check git
+git --version
+
+3) Check changes were made or not
+git status
+
+4) Add changes
+git add .
+
+5) Commit
+git commit -m "Larousse"
+
+6) Push 
+git push origin main
