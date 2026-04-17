@@ -1,0 +1,21 @@
+AIRLINE DATA WAREHOUSE PREPARATION AUDIT
+Executed: 2026-04-04T12:16:15.446354
+================================================================================
+
+[2026-04-04 12:16:13] [INFO] LOAD: airline_satisfaction: 129,880 rows × 24 cols
+[2026-04-04 12:16:13] [INFO] LOAD: customer_activity: 392,936 rows × 8 cols
+[2026-04-04 12:16:13] [INFO] LOAD: customer_loyalty: 16,737 rows × 16 cols
+[2026-04-04 12:16:13] [INFO] LOAD: calendar: 2,557 rows × 4 cols
+[2026-04-04 12:16:13] [INFO] STANDARDIZE: airline_satisfaction: columns standardized
+[2026-04-04 12:16:13] [INFO] STANDARDIZE: customer_activity: columns standardized
+[2026-04-04 12:16:13] [INFO] STANDARDIZE: customer_loyalty: columns standardized
+[2026-04-04 12:16:13] [INFO] STANDARDIZE: calendar: columns standardized
+[2026-04-04 12:16:13] [INFO] DEDUP: airline_satisfaction: removed 0 duplicates
+[2026-04-04 12:16:13] [INFO] DEDUP: customer_activity: removed 3871 duplicates
+[2026-04-04 12:16:13] [INFO] DEDUP: customer_loyalty: removed 0 duplicates
+[2026-04-04 12:16:13] [INFO] SURROG_KEY: Created 16,737 customer keys
+[2026-04-04 12:16:13] [INFO] SURROG_KEY: Created 2,557 date keys
+[2026-04-04 12:16:13] [INFO] DIM_CUSTOMER: Built with 16,737 rows
+[2026-04-04 12:16:13] [INFO] DIM_TIME: Built with 2,557 rows
+[2026-04-04 12:16:13] [INFO] FACT_SATISFACTION: Built with 129,880 rows
+[2026-04-04 12:16:13] [INFO] FACT_ACTIVITY: Built with 389,065 rows

@@ -1,0 +1,46 @@
+{
+  "schema_name": "airline_dw",
+  "version": "1.0",
+  "created": "2026-04-04T12:16:15.440722",
+  "dimensions": {
+    "dim_customer": {
+      "primary_key": "customer_sk",
+      "business_key": "loyalty_number",
+      "rows": 16737,
+      "description": "Customer profile with demographics and loyalty status"
+    },
+    "dim_time": {
+      "primary_key": "date_sk",
+      "business_key": "date",
+      "rows": 2557,
+      "description": "Time dimension for temporal analysis"
+    }
+  },
+  "facts": {
+    "fact_satisfaction": {
+      "primary_key": "satisfaction_sk",
+      "grain": "Individual flight satisfaction",
+      "rows": 129880,
+      "foreign_keys": [],
+      "description": "Passenger satisfaction metrics"
+    },
+    "fact_activity": {
+      "primary_key": "activity_sk",
+      "grain": "Customer monthly activity",
+      "rows": 389065,
+      "foreign_keys": {
+        "customer_sk": "dim_customer.customer_sk"
+      },
+      "description": "Monthly customer flights and loyalty points"
+    }
+  },
+  "relationships": [
+    {
+      "fact_table": "fact_activity",
+      "fact_column": "customer_sk",
+      "dimension_table": "dim_customer",
+      "dimension_column": "customer_sk",
+      "cardinality": "Many-to-One"
+    }
+  ]
+}
