@@ -26,23 +26,24 @@ Raw Data → Data Cleaning → Data Warehouse → BI → ML / NLP / CV
 ---
 
 ## 📂 Repository Structure
+```bash
 Airlines_Project/
 │
-├── 01_Presentations/ # Project presentations (slides, demos)
-├── 02_Documentation/ # Project documentation & architecture
-├── 03_Data_Raw/ # Raw datasets (CSV files)
-├── 04_Data_Cleaned/ # Processed & cleaned datasets
-├── 05_Scripts/ # ETL scripts (Python / SQL)
-├── 06_Dashboards/ # Power BI dashboards & exports
-├── 07_ML/ # Machine Learning models & notebooks
-├── 08_CNN/ # Computer Vision (CNN / YOLO models)
-├── 09_Reports/ # Final reports & analysis
-├── 10_NLP/ # (Upcoming) NLP pipelines & text analysis
+├── 01_Presentations/      # Project presentations (slides, demos)
+├── 02_Documentation/      # Project documentation & architecture
+├── 03_Data_Raw/           # Raw datasets (CSV files)
+├── 04_Data_Cleaned/       # Processed & cleaned datasets
+├── 05_Scripts/            # ETL scripts (Python / SQL)
+├── 06_Dashboards/         # Power BI dashboards & exports
+├── 07_ML/                 # Machine Learning models & notebooks
+├── 08_CNN/                # Computer Vision (CNN / YOLO models)
+├── 09_Reports/            # Final reports & analysis
+├── 10_NLP/                # (Upcoming) NLP pipelines & text analysis
 │
 ├── .gitignore
 ├── README.md
-└── yolo11n.pt # Pretrained YOLO model
-
+└── yolo11n.pt             # Pretrained YOLO model
+```
 ---
 
 ## 📊 Business Intelligence Objectives
@@ -131,6 +132,9 @@ This project supports:
 ```bash
 git clone https://github.com/Larousse2001/Airlines_Project.git
 cd Airlines_Project
+```
+
+
 ## 📅 Project Roadmap
 
 - ✅ Data Engineering Pipeline  
