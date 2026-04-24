@@ -42,7 +42,6 @@ Airlines_Project/
 │
 ├── .gitignore
 ├── README.md
-└── yolo11n.pt             # Pretrained YOLO model
 ```
 ---
 
