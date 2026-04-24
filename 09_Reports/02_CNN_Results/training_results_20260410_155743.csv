@@ -1,0 +1,4 @@
+Model,Backbone,Test Accuracy,Macro Precision,Macro Recall,Macro F1,Test Loss
+CABIN_CLEANLINESS,EfficientNetB0,0.7037,0.2346,0.3333,0.2754,1.1172
+CROWD,ResNet50V2,0.3684,0.1842,0.5000,0.2692,0.8278
+LUGGAGE,DenseNet121,0.8400,0.8036,0.7237,0.7500,0.5482

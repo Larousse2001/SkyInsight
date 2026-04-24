@@ -1,0 +1,12 @@
+Feature,SHAP_Importance,Feature_Type,Impact_Direction,Interpretation
+Route_Category,0.245,Categorical,Strong_Positive,Long-haul routes significantly more profitable than short-haul
+Flight_Hours,0.189,Numerical,Positive,Distance correlates with profitability
+Load_Factor,0.167,Numerical,Positive,Higher seat occupancy directly improves margins
+Passengers,0.134,Numerical,Positive,More passengers = better profit (fixed costs spread)
+Revenue_Per_Passenger,0.098,Numerical,Positive,Higher ticket prices drive margins
+Season,0.087,Categorical,Mixed,Peak season highly profitable; low season unprofitable
+Aircraft_Capacity,0.076,Numerical,Positive,Larger aircraft enable better economies of scale
+Fuel_Cost_Ratio,0.052,Numerical,Negative,Fuel efficiency critical to margins
+Aircraft_Type,0.041,Categorical,Mixed,Modern aircraft better than legacy
+Demand_Level,0.038,Categorical,Positive,High demand correlates with higher margins
+Cost_Per_Passenger,0.033,Numerical,Negative,Lower per-pax cost drives profitability

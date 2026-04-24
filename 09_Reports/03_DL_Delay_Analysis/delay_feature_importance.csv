@@ -1,0 +1,18 @@
+Feature,Importance_Score,Rank,Data_Type,Description
+weather_delay,0.287,1,Numerical,Actual weather delay (minutes) - PRIMARY PREDICTOR
+nas_delay,0.156,2,Numerical,National Airspace System delay
+late_aircraft_delay,0.134,3,Numerical,Delay from previous flight
+arr_delay,0.098,4,Numerical,Total arrival delay
+carrier_delay,0.087,5,Numerical,Carrier-caused delay
+arr_flights,0.065,6,Numerical,Number of arrival flights
+weather_ct,0.054,7,Numerical,Weather event count
+arr_del15,0.043,8,Numerical,Flights delayed >15 minutes (flag)
+arr_cancelled,0.038,9,Numerical,Cancelled flights count
+arr_diverted,0.031,10,Numerical,Diverted flights count
+month,0.028,11,Categorical,Month of year (seasonality)
+year,0.022,12,Categorical,Year (trend over time)
+security_ct,0.018,13,Numerical,Security event count
+security_delay,0.012,14,Numerical,Security-related delay
+nas_ct,0.008,15,Numerical,NAS event count
+carrier_ct,0.007,16,Numerical,Carrier event count
+late_aircraft_ct,0.002,17,Numerical,Late aircraft event count

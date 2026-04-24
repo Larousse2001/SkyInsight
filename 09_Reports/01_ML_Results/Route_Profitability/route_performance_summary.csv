@@ -1,0 +1,11 @@
+Route,Route_Category,Destination,Avg_Profit_Margin,Profitability_Rate,Avg_Load_Factor,Total_Flights,Recommendation,Action_Priority
+DXB-FRA,Long Haul,Frankfurt,46.08,100.0,0.86,150,Expand capacity,HIGH
+DXB-SIN,Long Haul,Singapore,42.07,99.4,0.85,160,Expand capacity,HIGH
+DXB-CDG,Long Haul,Paris,41.27,100.0,0.84,145,Expand capacity,HIGH
+DXB-BKK,Long Haul,Bangkok,39.91,99.1,0.83,130,Expand capacity,HIGH
+DXB-HKG,Long Haul,Hong Kong,38.67,99.7,0.82,155,Expand capacity,HIGH
+DXB-LAX,Long Haul,Los Angeles,-15.59,31.6,0.65,120,Review strategy,MEDIUM
+DXB-RUH,Short Haul,Riyadh,-41.20,8.8,0.58,80,Restructure/codeshare,HIGH
+DXB-JED,Short Haul,Jeddah,-68.19,0.0,0.48,75,Suspend/codeshare,CRITICAL
+DXB-AMM,Short Haul,Amman,-76.29,0.5,0.45,70,Suspend,CRITICAL
+DXB-CAI,Short Haul,Cairo,-83.96,0.0,0.42,65,Suspend,CRITICAL

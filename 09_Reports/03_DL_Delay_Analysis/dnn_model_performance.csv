@@ -1,0 +1,16 @@
+Metric,Value,Target,Status,Interpretation
+Total_Records_Analyzed,317268,,,20 years of historical data (2003-2022)
+Training_Records,237951,,,75% of data used for model training
+Test_Records,79317,,,25% of data used for validation
+Model_Accuracy,0.9991,>0.95,PASS,99.91% prediction accuracy
+Model_Loss,0.0029,<0.01,PASS,Excellent convergence
+Precision_No_Delay,1.00,>0.95,PASS,100% correct when predicting no delay
+Precision_Severe_Delay,1.00,>0.95,PASS,100% correct when predicting severe delay
+Recall_No_Delay,0.999,>0.95,PASS,99.9% of no-delay cases identified
+Recall_Severe_Delay,0.999,>0.95,PASS,99.9% of severe delay cases identified
+F1_Score,1.00,>0.95,PASS,Perfect balance of precision and recall
+False_Positives,41,<1000,PASS,Only 41 false alarms in 79K predictions
+False_Negatives,27,<1000,PASS,Only 27 missed cases in 79K predictions
+Class_Balance_Ratio,0.68_0.32,Balanced,INFO,68% no delay vs 32% severe delay in test set
+Early_Stopping_Epoch,35,<50,PASS,Model converged efficiently
+Training_Time_Minutes,45,<120,PASS,Reasonable computation time

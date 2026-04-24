@@ -1,0 +1,5 @@
+Season,Month_Start,Month_End,Avg_Profit_Margin,Avg_Load_Factor,Avg_Revenue_Per_Pax,Total_Revenue_USD_M,Total_Profit_USD_M,Profitable_Routes_Pct,Unprofitable_Routes_Pct,Business_Implication
+Peak,12,2,17.55,0.870,1587.5,748.2,165.3,93,7,Maximize capacity; premium pricing opportunity
+Shoulder,3,5,10.14,0.822,1402.1,625.8,95.4,78,22,Balanced operations; launch promotions
+Shoulder,9,11,10.14,0.822,1402.1,625.8,95.4,78,22,Balanced operations; launch promotions
+Normal,6,8,-8.50,0.719,895.4,371.9,-25.7,42,58,CRITICAL: Dynamic pricing needed; consider route cuts
