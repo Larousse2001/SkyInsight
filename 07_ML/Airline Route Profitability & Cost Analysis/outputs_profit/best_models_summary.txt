@@ -1,0 +1,10 @@
+Best Regression Model
+Model: XGBoost
+Test R2: 0.6963
+RMSE: 21.214
+MAE: 16.057
+
+Best Classification Model
+Model: Gradient Boosting
+ROC-AUC: 0.8977
+F1: 0.8676

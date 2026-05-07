@@ -1,0 +1,30 @@
+{
+  "best_regression_model": {
+    "Model": "XGBoost",
+    "CV R\u00b2 Mean": 0.6758194233088964,
+    "CV R\u00b2 Std": 0.01696132401034155,
+    "Test R\u00b2": 0.6963288452074499,
+    "RMSE": 21.21413761348436,
+    "MAE": 16.057206935750784
+  },
+  "best_classification_model": {
+    "Model": "Gradient Boosting",
+    "CV AUC Mean": 0.9035743255970103,
+    "CV AUC Std": 0.003877623634522826,
+    "Accuracy": 0.8200626959247649,
+    "ROC-AUC": 0.8977211579380515,
+    "F1": 0.8675588371019843
+  },
+  "top_shap_features": {
+    "Destination": 1.043747840698631,
+    "Passengers": 0.9214999079650698,
+    "Flight_Hours": 0.9080321585200368,
+    "Route_Category": 0.26124673885063027,
+    "Aircraft_Capacity": 0.08628177509250648,
+    "Demand_Level": 0.05197680651617358,
+    "Season": 0.045243996455226504,
+    "Month": 0.009270716330594822,
+    "Load_Factor": 0.005976107151828706,
+    "Aircraft_Type": 0.0009160264546507901
+  }
+}
