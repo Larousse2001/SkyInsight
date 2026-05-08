@@ -1,5 +1,5 @@
 {
-  "rows": 4440,
+  "rows": 5190,
   "columns": [
     "airline",
     "date",
@@ -16,7 +16,7 @@
     "entities"
   ],
   "text_column": "review_text",
-  "tfidf_matrix_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\tfidf_matrix.npz",
+  "tfidf_matrix_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\tfidf_matrix.npz",
   "embeddings_path": null,
-  "topics_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\lda_topics.csv"
+  "topics_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\lda_topics.csv"
 }
