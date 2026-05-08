@@ -1,0 +1,22 @@
+{
+  "rows": 4440,
+  "columns": [
+    "airline",
+    "date",
+    "rating",
+    "review_text",
+    "source",
+    "verified_purchase",
+    "text_clean",
+    "text_nostop",
+    "sent_vader",
+    "sent_bert_label",
+    "sent_bert_score",
+    "topic_id",
+    "entities"
+  ],
+  "text_column": "review_text",
+  "tfidf_matrix_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\tfidf_matrix.npz",
+  "embeddings_path": null,
+  "topics_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\lda_topics.csv"
+}
