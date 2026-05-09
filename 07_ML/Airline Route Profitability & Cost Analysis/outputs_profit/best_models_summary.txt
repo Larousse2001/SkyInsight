@@ -1,0 +1,10 @@
+Best Regression Model
+Model: LightGBM
+Test R2: 0.6825
+RMSE: 21.693
+MAE: 16.109
+
+Best Classification Model
+Model: Gradient Boosting
+ROC-AUC: 0.8977
+F1: 0.8676

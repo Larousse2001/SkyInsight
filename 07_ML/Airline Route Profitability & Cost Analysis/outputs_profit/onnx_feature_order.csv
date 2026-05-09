@@ -1,0 +1,12 @@
+feature
+Aircraft_Capacity
+Passengers
+Load_Factor
+Flight_Hours
+Month
+Quarter
+Aircraft_Type
+Route_Category
+Season
+Demand_Level
+Destination

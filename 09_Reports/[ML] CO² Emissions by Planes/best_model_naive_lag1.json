@@ -1,0 +1,7 @@
+{
+  "model": "Naive (Lag-1)",
+  "forecast_csv": "exports\\forecast_values.csv",
+  "path": "exports\\best_model_naive_lag1.json",
+  "type": "naive_lag1",
+  "last_value": 200178060.0
+}

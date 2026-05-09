@@ -1,0 +1,408 @@
+{
+  "model_name": "XGBoost",
+  "classes": [
+    "Neutral or Dissatisfied",
+    "Satisfied"
+  ],
+  "n_classes": 2,
+  "metrics": {
+    "accuracy": 0.9655,
+    "precision": 0.9747,
+    "recall": 0.9452,
+    "f1": 0.9597,
+    "roc_auc": 0.9954
+  },
+  "feature_schema": [
+    {
+      "name": "gender",
+      "dtype": "object",
+      "type": "categorical",
+      "values": [
+        "Female",
+        "Male"
+      ]
+    },
+    {
+      "name": "age",
+      "dtype": "int64",
+      "type": "numeric",
+      "min": 7.0,
+      "max": 85.0,
+      "mean": 39.43
+    },
+    {
+      "name": "customer_type",
+      "dtype": "object",
+      "type": "categorical",
+      "values": [
+        "First-time",
+        "Returning"
+      ]
+    },
+    {
+      "name": "type_of_travel",
+      "dtype": "object",
+      "type": "categorical",
+      "values": [
+        "Business",
+        "Personal"
+      ]
+    },
+    {
+      "name": "class",
+      "dtype": "object",
+      "type": "categorical",
+      "values": [
+        "Business",
+        "Economy",
+        "Economy Plus"
+      ]
+    },
+    {
+      "name": "flight_distance",
+      "dtype": "int64",
+      "type": "numeric",
+      "min": 31.0,
+      "max": 4983.0,
+      "mean": 1190.32
+    },
+    {
+      "name": "departure_delay",
+      "dtype": "int64",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 1592.0,
+      "mean": 14.71
+    },
+    {
+      "name": "arrival_delay",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0
+      ]
+    },
+    {
+      "name": "departure_and_arrival_time_convenience",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "ease_of_online_booking",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "checkin_service",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "online_boarding",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "gate_location",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "onboard_service",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "seat_comfort",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "leg_room_service",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "cleanliness",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "food_and_drink",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "inflight_service",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "inflight_wifi_service",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "inflight_entertainment",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "baggage_handling",
+      "dtype": "int64",
+      "type": "categorical",
+      "values": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "name": "total_delay",
+      "dtype": "int64",
+      "type": "numeric",
+      "min": 0.0,
+      "max": 1592.0,
+      "mean": 14.71
+    },
+    {
+      "name": "delay_flag",
+      "dtype": "int32",
+      "type": "categorical",
+      "values": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "age_distance_interaction",
+      "dtype": "int64",
+      "type": "numeric",
+      "min": 372.0,
+      "max": 333861.0,
+      "mean": 48431.66
+    }
+  ],
+  "top_importances": [
+    {
+      "feature": "cat__type_of_travel_Personal",
+      "importance": 0.582834
+    },
+    {
+      "feature": "cat__customer_type_First-time",
+      "importance": 0.448115
+    },
+    {
+      "feature": "num__online_boarding",
+      "importance": 0.413851
+    },
+    {
+      "feature": "cat__type_of_travel_Business",
+      "importance": 0.409875
+    },
+    {
+      "feature": "cat__customer_type_Returning",
+      "importance": 0.272589
+    },
+    {
+      "feature": "num__inflight_wifi_service",
+      "importance": 0.264861
+    },
+    {
+      "feature": "cat__class_Economy Plus",
+      "importance": 0.15894
+    },
+    {
+      "feature": "cat__class_Business",
+      "importance": 0.158846
+    },
+    {
+      "feature": "cat__class_Economy",
+      "importance": 0.14642
+    },
+    {
+      "feature": "num__checkin_service",
+      "importance": 0.145886
+    },
+    {
+      "feature": "num__onboard_service",
+      "importance": 0.132502
+    },
+    {
+      "feature": "num__leg_room_service",
+      "importance": 0.120759
+    },
+    {
+      "feature": "num__age_distance_interaction",
+      "importance": 0.112067
+    },
+    {
+      "feature": "num__cleanliness",
+      "importance": 0.10631
+    },
+    {
+      "feature": "num__ease_of_online_booking",
+      "importance": 0.105104
+    },
+    {
+      "feature": "num__flight_distance",
+      "importance": 0.104109
+    },
+    {
+      "feature": "cat__gender_Female",
+      "importance": 0.099814
+    },
+    {
+      "feature": "num__age",
+      "importance": 0.08789
+    },
+    {
+      "feature": "cat__gender_Male",
+      "importance": 0.079009
+    },
+    {
+      "feature": "num__delay_flag",
+      "importance": 0.072671
+    }
+  ],
+  "selected_features": [
+    "num__online_boarding",
+    "num__inflight_wifi_service",
+    "cat__class_Business",
+    "cat__type_of_travel_Business",
+    "cat__type_of_travel_Personal",
+    "num__inflight_entertainment",
+    "num__seat_comfort",
+    "num__ease_of_online_booking",
+    "cat__class_Economy",
+    "num__leg_room_service",
+    "cat__customer_type_First-time",
+    "num__flight_distance",
+    "num__age",
+    "num__age_distance_interaction",
+    "num__onboard_service",
+    "num__cleanliness",
+    "num__checkin_service",
+    "num__baggage_handling",
+    "cat__customer_type_Returning",
+    "num__inflight_service",
+    "num__departure_and_arrival_time_convenience",
+    "num__gate_location",
+    "num__food_and_drink",
+    "num__total_delay",
+    "num__departure_delay",
+    "cat__gender_Female",
+    "cat__gender_Male",
+    "cat__class_Economy Plus",
+    "num__delay_flag",
+    "num__arrival_delay"
+  ],
+  "pkl_file": "best_model.pkl",
+  "api_endpoint": "http://localhost:8000"
+}

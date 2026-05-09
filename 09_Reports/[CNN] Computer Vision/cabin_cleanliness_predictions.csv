@@ -1,0 +1,95 @@
+file,true_class,pred_class,confidence,prob_Clean,prob_Dirty
+Clean\000004.jpg,Clean,Clean,0.9031661,0.9031661,0.09683381
+Clean\000013.jpg,Clean,Dirty,0.82407296,0.17592707,0.82407296
+Clean\000014.jpg,Clean,Dirty,0.558327,0.441673,0.558327
+Clean\000016.jpg,Clean,Dirty,0.70720255,0.29279745,0.70720255
+Clean\000017.jpg,Clean,Clean,0.632219,0.632219,0.36778104
+Clean\000023.jpg,Clean,Clean,0.59063166,0.59063166,0.40936837
+Clean\000041.jpg,Clean,Dirty,0.7217432,0.2782568,0.7217432
+Clean\000045.jpg,Clean,Dirty,0.71133065,0.28866932,0.71133065
+Clean\000048.jpg,Clean,Dirty,0.54632974,0.45367023,0.54632974
+Clean\000050.jpg,Clean,Dirty,0.56139517,0.43860483,0.56139517
+Clean\cabin_test_00002.jpg,Clean,Clean,0.85102665,0.85102665,0.14897339
+Clean\cabin_test_00014.jpg,Clean,Clean,0.5236183,0.5236183,0.4763817
+Clean\cabin_test_00027.jpg,Clean,Dirty,0.568835,0.431165,0.568835
+Clean\cabin_train_00017.jpg,Clean,Clean,0.6236348,0.6236348,0.3763652
+Clean\cabin_train_00030.jpg,Clean,Dirty,0.80719477,0.19280519,0.80719477
+Clean\cabin_train_00040.jpg,Clean,Clean,0.55263025,0.55263025,0.44736972
+Clean\cabin_train_00213.jpg,Clean,Clean,0.59707934,0.59707934,0.40292063
+Clean\cabin_train_00242.jpg,Clean,Clean,0.8829335,0.8829335,0.11706649
+Clean\cabin_train_00243.jpg,Clean,Clean,0.7769087,0.7769087,0.22309129
+Clean\cabin_train_00244.jpg,Clean,Clean,0.6203629,0.6203629,0.37963703
+Clean\cabin_train_00246.jpg,Clean,Clean,0.66893435,0.66893435,0.33106568
+Clean\cabin_train_00264.jpg,Clean,Clean,0.5951838,0.5951838,0.40481627
+Clean\cabin_train_00278.jpg,Clean,Clean,0.5634981,0.5634981,0.43650195
+Clean\cabin_train_00313.jpg,Clean,Dirty,0.52004695,0.47995308,0.52004695
+Clean\cabin_train_00335.jpg,Clean,Clean,0.61355495,0.61355495,0.38644502
+Clean\cabin_train_00348.jpg,Clean,Clean,0.63179314,0.63179314,0.3682069
+Clean\cabin_train_00455.jpg,Clean,Clean,0.6572085,0.6572085,0.3427915
+Clean\cabin_train_00509.jpg,Clean,Dirty,0.5153227,0.48467737,0.5153227
+Clean\cabin_train_00513.jpg,Clean,Clean,0.66350543,0.66350543,0.33649457
+Clean\cabin_train_00515.jpg,Clean,Dirty,0.80509645,0.1949036,0.80509645
+Clean\cabin_train_00525.jpg,Clean,Clean,0.7302177,0.7302177,0.26978227
+Clean\cabin_train_00534.jpg,Clean,Clean,0.81297874,0.81297874,0.1870213
+Clean\cabin_train_00553.jpg,Clean,Clean,0.6830496,0.6830496,0.31695038
+Clean\cabin_train_00556.jpg,Clean,Clean,0.6246872,0.6246872,0.37531286
+Clean\cabin_valid_00007.jpg,Clean,Clean,0.56385833,0.56385833,0.43614167
+Clean\cabin_valid_00009.jpg,Clean,Dirty,0.76328534,0.23671468,0.76328534
+Clean\cabin_valid_00030.jpg,Clean,Dirty,0.60777956,0.39222047,0.60777956
+Clean\cabin_valid_00036.jpg,Clean,Clean,,,
+Clean\img_00010.jpg,Clean,Clean,0.57146955,0.57146955,0.42853045
+Clean\img_00036.jpg,Clean,Clean,0.88696,0.88696,0.113039955
+Clean\img_00042.jpg,Clean,Clean,0.68122333,0.68122333,0.31877667
+Clean\img_00045.jpg,Clean,Dirty,0.6500786,0.34992138,0.6500786
+Clean\img_00050.jpg,Clean,Clean,0.6725468,0.6725468,0.3274532
+Clean\pic_000004.jpg,Clean,Clean,0.51546746,0.51546746,0.4845325
+Clean\pic_000005.jpeg,Clean,Dirty,0.60418725,0.39581272,0.60418725
+Clean\pic_000010.jpg,Clean,Clean,0.63534266,0.63534266,0.36465734
+Clean\pic_000011.jpg,Clean,Clean,0.53968084,0.53968084,0.46031922
+Clean\taswira_00001.jpg,Clean,Dirty,0.7800348,0.21996519,0.7800348
+Clean\taswira_00006.jpg,Clean,Clean,0.81946033,0.81946033,0.18053968
+Clean\taswira_00012.jpg,Clean,Dirty,0.54225737,0.45774263,0.54225737
+Clean\taswira_00017.jpg,Clean,Clean,0.63534266,0.63534266,0.36465734
+Clean\taswira_00031.jpg,Clean,Clean,0.8471476,0.8471476,0.15285239
+Clean\taswira_00042.jpg,Clean,Clean,0.71775436,0.71775436,0.28224564
+Clean\taswira_00044.jpg,Clean,Dirty,0.7070003,0.2929997,0.7070003
+Clean\taswira_00051.jpg,Clean,Dirty,0.6311397,0.36886024,0.6311397
+Clean\taswira_00058.jpg,Clean,Clean,0.69699055,0.69699055,0.30300945
+Clean\taswira_00062.jpg,Clean,Dirty,0.64932853,0.35067147,0.64932853
+Clean\taswira_00064.jpg,Clean,Dirty,0.79366624,0.20633376,0.79366624
+Clean\taswira_00073.jpg,Clean,Dirty,0.9071684,0.09283159,0.9071684
+Clean\taswira_00075.jpg,Clean,Dirty,0.5371533,0.46284667,0.5371533
+Clean\taswira_00085.jpg,Clean,Dirty,0.6399611,0.3600389,0.6399611
+Clean\taswira_00101.jpg,Clean,Clean,0.88696,0.88696,0.113039955
+Clean\taswira_00104.jpg,Clean,Dirty,0.7928254,0.20717461,0.7928254
+Clean\taswira_00107.jpeg,Clean,Clean,0.68143535,0.68143535,0.31856462
+Clean\taswira_00110.jpg,Clean,Dirty,0.557484,0.44251603,0.557484
+Clean\taswira_00116.jpg,Clean,Clean,0.68505794,0.68505794,0.314942
+Dirty\000007.jpg,Dirty,Clean,0.6043697,0.6043697,0.3956303
+Dirty\000010.jpg,Dirty,Clean,0.5481898,0.5481898,0.45181018
+Dirty\000011.jpg,Dirty,Dirty,0.57224476,0.4277553,0.57224476
+Dirty\000031.jpg,Dirty,Clean,0.6282649,0.6282649,0.3717351
+Dirty\000033.jpg,Dirty,Clean,0.7027341,0.7027341,0.2972659
+Dirty\download (19).jpg,Dirty,Clean,0.9472592,0.9472592,0.052740786
+Dirty\download (2).jpg,Dirty,Clean,0.9472592,0.9472592,0.052740786
+Dirty\download (20).jpg,Dirty,Dirty,0.55106044,0.44893962,0.55106044
+Dirty\download (3).jpg,Dirty,Clean,0.86356425,0.86356425,0.1364357
+Dirty\download.jpg,Dirty,Clean,0.76829886,0.76829886,0.23170114
+Dirty\images (15).jpg,Dirty,Dirty,0.61831963,0.3816804,0.61831963
+Dirty\images (18).jpg,Dirty,Clean,0.7516026,0.7516026,0.24839745
+Dirty\images (22).jpg,Dirty,Dirty,0.6431332,0.3568668,0.6431332
+Dirty\images (31).jpg,Dirty,Clean,0.5861805,0.5861805,0.41381946
+Dirty\images (9).jpg,Dirty,Dirty,0.68710536,0.3128946,0.68710536
+Dirty\img_00004.jpg,Dirty,Clean,0.54704446,0.54704446,0.45295554
+Dirty\img_00005.jpg,Dirty,Clean,0.69969064,0.69969064,0.30030933
+Dirty\img_00021.jpg,Dirty,Clean,0.54704446,0.54704446,0.45295554
+Dirty\img_00025.jpg,Dirty,Clean,0.50268555,0.50268555,0.4973145
+Dirty\img_00032.jpg,Dirty,Dirty,0.7588235,0.24117649,0.7588235
+Dirty\img_00033.jpg,Dirty,Dirty,0.9226045,0.07739555,0.9226045
+Dirty\taswira_00001.jpg,Dirty,Clean,0.54539543,0.54539543,0.45460454
+Dirty\taswira_00016.jpg,Dirty,Clean,0.8527306,0.8527306,0.14726944
+Dirty\taswira_00020.jpg,Dirty,Dirty,0.81706417,0.18293585,0.81706417
+Dirty\taswira_00021.jpg,Dirty,Clean,0.8115267,0.8115267,0.1884733
+Dirty\taswira_00028.jpg,Dirty,Clean,0.81946033,0.81946033,0.18053968
+Dirty\taswira_00031.jpg,Dirty,Clean,0.71243227,0.71243227,0.28756768
+Dirty\taswira_00037.jpg,Dirty,Dirty,0.67637944,0.32362053,0.67637944
