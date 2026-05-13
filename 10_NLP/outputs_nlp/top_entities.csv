@@ -1,0 +1,51 @@
+entity,count,text,label
+seat comfort:PERSON,1689,seat comfort,PERSON
+1 2:CARDINAL,481,1 2,CARDINAL
+4 5:DATE,439,4 5,DATE
+4 5:CARDINAL,427,4 5,CARDINAL
+first:ORDINAL,274,first,ORDINAL
+one:CARDINAL,151,one,CARDINAL
+two:CARDINAL,118,two,CARDINAL
+boeing:ORG,103,boeing,ORG
+1:CARDINAL,99,1,CARDINAL
+2:CARDINAL,97,2,CARDINAL
+london:GPE,87,london,GPE
+singapore:GPE,73,singapore,GPE
+paris:GPE,70,paris,GPE
+december 2025:DATE,68,december 2025,DATE
+qatar:GPE,66,qatar,GPE
+november 2025:DATE,59,november 2025,DATE
+american:NORP,56,american,NORP
+dubai:GPE,56,dubai,GPE
+january 2026:DATE,56,january 2026,DATE
+doha:GPE,55,doha,GPE
+american airlines:ORG,53,american airlines,ORG
+france:GPE,51,france,GPE
+3:CARDINAL,51,3,CARDINAL
+jfk:PERSON,50,jfk,PERSON
+frankfurt:GPE,48,frankfurt,GPE
+new york:GPE,45,new york,GPE
+october 2025:DATE,43,october 2025,DATE
+second:ORDINAL,41,second,ORDINAL
+japan:GPE,40,japan,GPE
+september 2025:DATE,40,september 2025,DATE
+alaska:GPE,39,alaska,GPE
+europe:LOC,38,europe,LOC
+three:CARDINAL,37,three,CARDINAL
+istanbul:GPE,37,istanbul,GPE
+4:CARDINAL,36,4,CARDINAL
+united airlines:ORG,35,united airlines,ORG
+amsterdam:GPE,35,amsterdam,GPE
+https www:PERSON,34,https www,PERSON
+dallas:GPE,33,dallas,GPE
+august 2025:DATE,33,august 2025,DATE
+boston:GPE,32,boston,GPE
+don:PERSON,32,don,PERSON
+july 2025:DATE,32,july 2025,DATE
+today:DATE,31,today,DATE
+us:GPE,30,us,GPE
+737:PRODUCT,30,737,PRODUCT
+march 2026:DATE,30,march 2026,DATE
+february 2026:DATE,30,february 2026,DATE
+april 2026:DATE,30,april 2026,DATE
+2025:DATE,29,2025,DATE
