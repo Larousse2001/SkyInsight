@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #FBF4E8;
+  --foreground: #1A3263;
+  --sand: #EFD2B0;
+  --gold: #FFC570;
+  --steel: #547792;
+  --navy: #1A3263;
 }
 
 html, body {
@@ -13,16 +17,31 @@ html, body {
 
 body {
   background:
-    radial-gradient(1100px 600px at 90% -10%, rgba(59,130,246,0.18), transparent 60%),
-    radial-gradient(900px 500px at -10% 10%, rgba(99,102,241,0.16), transparent 60%),
-    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+    radial-gradient(1100px 600px at 92% -10%, rgba(255,197,112,0.28), transparent 60%),
+    radial-gradient(900px 500px at -10% 10%, rgba(84,119,146,0.18), transparent 60%),
+    radial-gradient(700px 400px at 50% 110%, rgba(239,210,176,0.4), transparent 60%),
+    linear-gradient(180deg, #FBF4E8 0%, #F4E6CC 100%);
   color: var(--foreground);
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   min-height: 100vh;
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
 }
+
+.text-gradient {
+  background: linear-gradient(135deg, #1A3263 0%, #547792 60%, #FFC570 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* subtle scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(84,119,146,0.35); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(26,50,99,0.55); }
+
