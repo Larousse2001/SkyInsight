@@ -1,5 +1,5 @@
 {
-  "rows": 5190,
+  "rows": 3328,
   "columns": [
     "airline",
     "date",
@@ -10,13 +10,24 @@
     "text_clean",
     "text_nostop",
     "sent_vader",
+    "sent_vader_label",
     "sent_bert_label",
     "sent_bert_score",
     "topic_id",
     "entities"
   ],
   "text_column": "review_text",
-  "tfidf_matrix_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\tfidf_matrix.npz",
-  "embeddings_path": null,
-  "topics_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\lda_topics.csv"
+  "tfidf_matrix_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\tfidf_matrix.npz",
+  "embeddings_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\text_embeddings.npy",
+  "topics_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\lda_topics.csv",
+  "ner_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\top_entities.csv",
+  "vader_distribution": {
+    "positive": 2396,
+    "negative": 877,
+    "neutral": 55
+  },
+  "bert_distribution": {
+    "NEGATIVE": 1949,
+    "POSITIVE": 1379
+  }
 }
