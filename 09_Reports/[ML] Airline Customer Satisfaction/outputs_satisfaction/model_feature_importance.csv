@@ -1,0 +1,91 @@
+feature,importance,model
+num__online_boarding,0.7702396899868973,Logistic Regression
+num__inflight_wifi_service,0.5721762843149752,Logistic Regression
+cat__class_Business,0.3417872413615406,Logistic Regression
+cat__type_of_travel_Business,1.065222707306536,Logistic Regression
+cat__type_of_travel_Personal,1.5925218685978113,Logistic Regression
+num__inflight_entertainment,0.09416040650836861,Logistic Regression
+num__seat_comfort,0.07332819248494898,Logistic Regression
+num__ease_of_online_booking,0.2552822260175358,Logistic Regression
+cat__class_Economy,0.3973285871125332,Logistic Regression
+num__leg_room_service,0.31316237477287306,Logistic Regression
+cat__customer_type_First-time,1.2687379237425558,Logistic Regression
+num__flight_distance,0.2835746346623875,Logistic Regression
+num__age,0.23083651593455698,Logistic Regression
+num__age_distance_interaction,0.3067683225114069,Logistic Regression
+num__onboard_service,0.3567244826999216,Logistic Regression
+num__cleanliness,0.27694455332533596,Logistic Regression
+num__checkin_service,0.38966636455261583,Logistic Regression
+num__baggage_handling,0.14840722522818856,Logistic Regression
+cat__customer_type_Returning,0.7414387624510465,Logistic Regression
+num__inflight_service,0.1406442223450593,Logistic Regression
+num__departure_and_arrival_time_convenience,0.19246637588767146,Logistic Regression
+num__gate_location,0.02709430566210462,Logistic Regression
+num__food_and_drink,0.03618256559989767,Logistic Regression
+num__total_delay,0.020359914968286333,Logistic Regression
+num__departure_delay,0.020359914968286333,Logistic Regression
+cat__gender_Female,0.29475978073308534,Logistic Regression
+cat__gender_Male,0.23253938055833642,Logistic Regression
+cat__class_Economy Plus,0.47175781554042073,Logistic Regression
+num__delay_flag,0.2124943224938792,Logistic Regression
+num__arrival_delay,0.0,Logistic Regression
+num__online_boarding,0.1660997567684054,Random Forest
+num__inflight_wifi_service,0.13878864711338762,Random Forest
+cat__class_Business,0.06405109077084702,Random Forest
+cat__type_of_travel_Business,0.05998376452428508,Random Forest
+cat__type_of_travel_Personal,0.06090896282004815,Random Forest
+num__inflight_entertainment,0.04578383107788579,Random Forest
+num__seat_comfort,0.04463371016397381,Random Forest
+num__ease_of_online_booking,0.03969697361157164,Random Forest
+cat__class_Economy,0.03532584884967681,Random Forest
+num__leg_room_service,0.031475272228805196,Random Forest
+cat__customer_type_First-time,0.02447344097369625,Random Forest
+num__flight_distance,0.025841763770863255,Random Forest
+num__age,0.026752127255647885,Random Forest
+num__age_distance_interaction,0.02691696841531777,Random Forest
+num__onboard_service,0.026491829256897952,Random Forest
+num__cleanliness,0.024626488659374737,Random Forest
+num__checkin_service,0.02347350514143187,Random Forest
+num__baggage_handling,0.02383646155383564,Random Forest
+cat__customer_type_Returning,0.022751509218058914,Random Forest
+num__inflight_service,0.022208079658401846,Random Forest
+num__departure_and_arrival_time_convenience,0.013601730643834156,Random Forest
+num__gate_location,0.013821824331953555,Random Forest
+num__food_and_drink,0.010773571625880204,Random Forest
+num__total_delay,0.008722047082260875,Random Forest
+num__departure_delay,0.008677612276633823,Random Forest
+cat__gender_Female,0.00300861435189667,Random Forest
+cat__gender_Male,0.0029048059232308437,Random Forest
+cat__class_Economy Plus,0.0026864392666091294,Random Forest
+num__delay_flag,0.001683322665288068,Random Forest
+num__arrival_delay,0.0,Random Forest
+num__online_boarding,0.3041593134403229,XGBoost
+num__inflight_wifi_service,0.08458457887172699,XGBoost
+cat__class_Business,0.07675130665302277,XGBoost
+cat__type_of_travel_Business,0.10018229484558105,XGBoost
+cat__type_of_travel_Personal,0.08577484637498856,XGBoost
+num__inflight_entertainment,0.03879629448056221,XGBoost
+num__seat_comfort,0.018977493047714233,XGBoost
+num__ease_of_online_booking,0.021989963948726654,XGBoost
+cat__class_Economy,0.006302535533905029,XGBoost
+num__leg_room_service,0.01802462711930275,XGBoost
+cat__customer_type_First-time,0.04856327921152115,XGBoost
+num__flight_distance,0.002993630710989237,XGBoost
+num__age,0.006327425129711628,XGBoost
+num__age_distance_interaction,0.0026415959000587463,XGBoost
+num__onboard_service,0.014925891533493996,XGBoost
+num__cleanliness,0.016545411199331284,XGBoost
+num__checkin_service,0.025548161938786507,XGBoost
+num__baggage_handling,0.01668109931051731,XGBoost
+cat__customer_type_Returning,0.05982363969087601,XGBoost
+num__inflight_service,0.013757673092186451,XGBoost
+num__departure_and_arrival_time_convenience,0.005355899687856436,XGBoost
+num__gate_location,0.015376392751932144,XGBoost
+num__food_and_drink,0.002321085659787059,XGBoost
+num__total_delay,0.0032334630377590656,XGBoost
+num__departure_delay,0.0020413966849446297,XGBoost
+cat__gender_Female,0.0018098083091899753,XGBoost
+cat__gender_Male,0.0011774812592193484,XGBoost
+cat__class_Economy Plus,0.0023103966377675533,XGBoost
+num__delay_flag,0.0030229941476136446,XGBoost
+num__arrival_delay,0.0,XGBoost
