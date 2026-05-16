@@ -8,14 +8,14 @@ import { useState } from "react";
 
 const NAV = [
   { href: "/", label: "Home" },
-  { href: "/dashboard", label: "Dashboard" },
+  // { href: "/dashboard", label: "Dashboard" },
   { href: "/bi", label: "Decision Insights" },
-  { href: "/nlp", label: "Reviews" },
   { href: "/predict/satisfaction", label: "Satisfaction" },
   { href: "/predict/delay", label: "Delay" },
   { href: "/clustering", label: "Loyal Circle" },
-  { href: "/predict/cnn", label: "SmartVision" },
   { href: "/forecast/co2", label: "CO₂ Emissions" },
+  { href: "/predict/cnn", label: "Smart Vision" },
+  { href: "/nlp", label: "Reviews" },
   { href: "/performance", label: "Performance Hub" },];
 
 export default function Navbar() {
