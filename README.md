@@ -1,151 +1,246 @@
-# ✈️ SkyInsight — Airlines Data Engineering Project
+# ✈️ SkyInsight — Airlines Data Engineering & AI Project
 
 ## 📌 Overview
-**SkyInsight** is an end-to-end Data Engineering platform designed to help airlines improve:
+**SkyInsight** is an end-to-end Data Engineering and Artificial Intelligence platform designed to help airlines improve:
+
 - Passenger satisfaction  
 - Customer loyalty  
 - Operational efficiency  
-- Environmental sustainability  
+- Sustainability and environmental impact  
 
-The project integrates **BI, Machine Learning, NLP, and Computer Vision** into a unified pipeline — from raw data ingestion to intelligent insights.
+The project combines **Data Engineering, Business Intelligence, Machine Learning, NLP, and Computer Vision** into a unified analytics ecosystem — from raw data ingestion to intelligent predictions and dashboards.
 
 ---
 
-## 🏗️ Project Architecture
-Raw Data → Data Cleaning → Data Warehouse → BI → ML / NLP / CV
+# 🏗️ Project Architecture
 
-- **Data Sources**: CSV datasets (loyalty, flights, satisfaction)
-- **ETL**: Python / SQL transformations
-- **Storage**: Structured datasets (cleaned & modeled)
-- **Analytics**: Power BI dashboards
+```text
+Raw Data → Data Cleaning → Data Warehouse → Dashboards → AI Models
+```
+
+### Core Layers
+- **Data Sources** → Airline operational & customer datasets  
+- **Data Cleaning** → Transformation and preprocessing pipelines  
+- **Data Warehouse** → Structured analytical storage  
+- **Dashboards** → Interactive BI reporting with Power BI  
 - **AI Layer**:
   - Machine Learning
-  - Natural Language Processing (NLP)
-  - Computer Vision
+  - NLP
+  - Computer Vision (CNN)
 
 ---
 
-## 📂 Repository Structure
+# 📂 Repository Structure
+
 ```bash
-Airlines_Project/
+SkyInsight/
 │
-├── 01_Presentations/      # Project presentations (slides, demos)
-├── 02_Documentation/      # Project documentation & architecture
-├── 03_Data_Raw/           # Raw datasets (CSV files)
-├── 04_Data_Cleaned/       # Processed & cleaned datasets
-├── 05_Scripts/            # ETL scripts (Python / SQL)
-├── 06_Dashboards/         # Power BI dashboards & exports
-├── 07_ML/                 # Machine Learning models & notebooks
-├── 08_CNN/                # Computer Vision (CNN / YOLO models)
-├── 09_Reports/            # Final reports & analysis
-├── 10_NLP/                # (Upcoming) NLP pipelines & text analysis
+├── 01_Presentations/       # Project presentations, demos & slides
+├── 02_Documentation/       # Architecture, technical docs & diagrams
+├── 03_Data_Raw/            # Original raw datasets
+├── 04_Data_Cleaned/        # Cleaned and transformed datasets
+├── 05_DataWarehouse/       # Data warehouse models & structured data
+├── 06_Dashboards/          # Power BI dashboards & analytics exports
+├── 07_ML/                  # Machine Learning notebooks, models & ONNX
+├── 08_CNN/                 # CNN & Computer Vision models
+├── 09_Reports/             # Final reports & analytical deliverables
+├── 10_NLP/                 # NLP pipelines & text analytics
+├── 11_WebApp/              # Web application & deployment interface
 │
-├── .gitignore
+├── .gitattributes          # Git LFS tracking configuration
 ├── README.md
+├── git_commands.txt        # Useful Git/Git LFS commands
+├── train_delay_onnx.py     # Delay prediction ONNX export script
+├── train_satisfaction_onnx.py # Satisfaction model ONNX export script
 ```
----
-
-## 📊 Business Intelligence Objectives
-
-- **Loyalty Analytics**
-  - Customer Lifetime Value (CLV)
-  - Loyalty segmentation & churn tracking  
-
-- **Flight Performance**
-  - Distance, revenue, and utilization metrics  
-
-- **Passenger Satisfaction**
-  - Analysis across multiple service features  
-
-- **Sustainability Reporting**
-  - CO₂ emissions tracking  
-  - Fuel efficiency per route  
 
 ---
 
-## 🤖 Machine Learning Use Cases
+# 📊 Business Intelligence Objectives
 
-- **Satisfaction Classification**
-  - Predict satisfied vs dissatisfied passengers  
+## ✈️ Passenger Satisfaction Analytics
+- Satisfaction scoring analysis  
+- Service quality benchmarking  
+- Delay impact analysis  
+- Passenger experience KPIs  
 
-- **Churn Prediction**
-  - Identify customers likely to leave loyalty programs  
+## 💳 Loyalty & Customer Analytics
+- Customer Lifetime Value (CLV)  
+- Loyalty segmentation  
+- Churn analysis & retention metrics  
 
-- **Customer Segmentation**
-  - Clustering (K-Means / DBSCAN)  
+## 📈 Flight Operations Analytics
+- Flight delay monitoring  
+- Route performance analysis  
+- Revenue & utilization metrics  
+- Operational efficiency indicators  
 
-- **Route Optimization**
-  - Improve load factor and efficiency  
-
-- **Carbon Emission Prediction**
-  - Estimate CO₂ per passenger  
-
----
-
-## 🧠 NLP (Upcoming - `10_NLP/`)
-
-- Sentiment Analysis (reviews & feedback)  
-- Topic Modeling (LDA / BERTopic)  
-- Aspect-Based Sentiment Analysis  
-- Keyword Extraction  
-- Automated report generation  
+## 🌱 Sustainability Analytics
+- Carbon emission tracking  
+- Fuel consumption analysis  
+- Eco-efficiency monitoring  
+- Sustainability KPI reporting  
 
 ---
 
-## 👁️ Computer Vision (CNN)
+# 🤖 Machine Learning Modules (`07_ML/`)
 
-Located in `08_CNN/`:
+## Implemented Use Cases
+- Passenger satisfaction classification  
+- Flight delay prediction  
+- Customer churn prediction  
+- Customer segmentation (clustering)  
+- Operational forecasting  
 
+## ML Technologies
+- Scikit-learn  
+- XGBoost  
+- TensorFlow / PyTorch  
+- ONNX model export for deployment  
+
+---
+
+# 👁️ Computer Vision (`08_CNN/`)
+
+The CNN module focuses on intelligent visual analysis for airline operations.
+
+## Features
 - Cabin cleanliness classification  
-- Passenger crowd detection (YOLO)  
+- Passenger crowd detection  
 - Aircraft anomaly detection  
 - Baggage handling quality control  
+- CNN-based image classification  
+
+## Technologies
+- OpenCV  
+- TensorFlow / PyTorch  
+- YOLO architectures  
 
 ---
 
-## 🌍 Sustainability Goals Alignment
+# 🧠 Natural Language Processing (`10_NLP/`)
 
-This project supports:
+NLP pipelines are designed to analyze customer textual feedback and airline communication.
 
-- **SDG 9** → Industry & Innovation  
-- **SDG 12** → Responsible Consumption  
-- **SDG 13** → Climate Action  
+## Features
+- Sentiment analysis  
+- Topic modeling  
+- Aspect-based sentiment analysis  
+- Feedback categorization  
+- Keyword extraction  
+- Automated reporting  
 
----
-
-## ⚙️ Tech Stack
-
-- **Languages**: Python, SQL  
-- **Data Processing**: Pandas, PySpark  
-- **Visualization**: Power BI  
-- **ML/DL**: Scikit-learn, XGBoost, TensorFlow / PyTorch  
-- **NLP**: NLTK, SpaCy, BERTopic  
-- **Computer Vision**: OpenCV, YOLO  
-- **Version Control**: Git & GitHub  
+## Technologies
+- NLTK  
+- SpaCy  
+- BERTopic  
+- Transformers  
 
 ---
 
-## 🚀 Getting Started
+# 🌐 Web Application (`11_WebApp/`)
 
-### Clone the repository
+The web application layer centralizes:
+- Dashboard access  
+- ML inference APIs  
+- Prediction visualization  
+- User interaction interfaces  
+- Deployment integration  
+
+Potential deployment targets:
+- Streamlit  
+- FastAPI  
+- Flask  
+- React frontend integration  
+
+---
+
+# ⚙️ Tech Stack
+
+## Programming Languages
+- Python  
+- SQL  
+
+## Data Engineering
+- Pandas  
+- PySpark  
+
+## Visualization
+- Power BI  
+
+## Machine Learning & Deep Learning
+- Scikit-learn  
+- XGBoost  
+- TensorFlow  
+- PyTorch  
+- ONNX Runtime  
+
+## NLP
+- NLTK  
+- SpaCy  
+- BERTopic  
+
+## Computer Vision
+- OpenCV  
+- YOLO  
+- CNN Architectures  
+
+## Dev Tools
+- Git & GitHub  
+- Git LFS  
+
+---
+
+# 🚀 Getting Started
+
+## Clone the Repository
+
 ```bash
 git clone https://github.com/Larousse2001/Airlines_Project.git
 cd Airlines_Project
 ```
 
+## Install Dependencies
 
-## 📅 Project Roadmap
+```bash
+pip install -r requirements.txt
+```
 
-- ✅ Data Engineering Pipeline  
-- ✅ Data Warehouse & BI  
-- ✅ Machine Learning Models  
-- 🔄 NLP Module (`10_NLP`)  
-- 🔄 Advanced Computer Vision  
-- 🔄 Deployment (API / Dashboard)  
+## Run ML Training
+
+```bash
+python train_satisfaction_onnx.py
+python train_delay_onnx.py
+```
 
 ---
 
-## 👨‍💻 Contributors
+# 📅 Project Roadmap
+
+- ✅ Data Engineering Pipeline  
+- ✅ Data Cleaning & Transformation  
+- ✅ Data Warehouse Integration  
+- ✅ Power BI Dashboards  
+- ✅ Machine Learning Models  
+- ✅ CNN & Computer Vision Integration  
+- 🔄 Advanced NLP Pipelines  
+- 🔄 Web Application Deployment  
+- 🔄 API & Real-Time Inference  
+- 🔄 Cloud Deployment  
+
+---
+
+# 🌍 Sustainability Goals Alignment
+
+This project contributes to:
+
+- **SDG 9** → Industry, Innovation & Infrastructure  
+- **SDG 12** → Responsible Consumption & Production  
+- **SDG 13** → Climate Action  
+
+---
+
+# 👨‍💻 Contributors
 
 - Achref AROUS  
 - Oumaima ROUIS  
@@ -155,6 +250,6 @@ cd Airlines_Project
 
 ---
 
-## 📜 License
+# 📜 License
 
-This project is for academic and educational purposes.
+This repository is intended for academic, educational, and research purposes.
