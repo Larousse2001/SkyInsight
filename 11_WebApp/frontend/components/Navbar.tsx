@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Plane, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 import { useState } from "react";
+import AnimatedLogo from "@/components/AnimatedLogo";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -25,14 +26,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-brand-100/70 bg-white/75 backdrop-blur-xl shadow-soft">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
-        <Link href="/" className="flex items-center gap-2.5 font-semibold text-navy">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-hero-grad text-white shadow-glow">
-            <Plane className="h-5 w-5" />
-          </span>
-          <div className="leading-tight">
-            <div className="text-lg font-bold tracking-tight">SkyInsight</div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-steel">AI for Airlines</div>
-          </div>
+        <Link href="/" className="font-semibold">
+          <AnimatedLogo size={40} showText />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-0.5">

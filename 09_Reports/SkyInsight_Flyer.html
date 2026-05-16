@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyInsight — AI for Airlines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #1A3263;
+      --navy2: #28456A;
+      --steel: #547792;
+      --gold:  #FFC570;
+      --sand:  #EFD2B0;
+      --white: #FFFFFF;
+      --light: #F4F7FB;
+    }
+
+    @page { size: A4 portrait; margin: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #E8EDF4;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .page {
+      background: var(--light);
+      width: 210mm;
+      min-height: 297mm;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(26,50,99,0.25);
+    }
+
+    /* ── HEADER ─────────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, #0F1F40 0%, #1A3263 45%, #2E5475 80%, #547792 100%);
+      padding: 30px 40px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(255,197,112,0.18) 0%, transparent 70%);
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 30%;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(84,119,146,0.3) 0%, transparent 65%);
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Inline logo icon */
+    .logo-icon {
+      width: 66px;
+      height: 66px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.35));
+    }
+
+    .header-titles h1 {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      line-height: 1;
+    }
+
+    .header-titles h1 span { color: var(--gold); }
+
+    .header-titles .sub {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,197,112,0.85);
+      margin-top: 5px;
+    }
+
+    .tagline {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      font-size: 14.5px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+
+    .tagline strong { color: var(--gold); font-weight: 600; }
+
+    /* Gold divider */
+    .gold-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--sand) 55%, transparent 100%);
+    }
+
+    /* ── STATS STRIP ────────────────────────────────────────── */
+    .stats {
+      background: var(--navy);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 14px 40px;
+    }
+
+    .stat { text-align: center; }
+
+    .stat .val {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .stat .lbl {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 3px;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 32px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* ── MAIN CONTENT ───────────────────────────────────────── */
+    .content { padding: 24px 40px 20px; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(84,119,146,0.3) 0%, transparent 100%);
+    }
+
+    /* ── FEATURE CARDS ──────────────────────────────────────── */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .feat {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 14px 15px;
+      border: 1px solid rgba(26,50,99,0.07);
+      box-shadow: 0 1px 6px rgba(26,50,99,0.05);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .feat-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .feat-icon.navy { background: rgba(26,50,99,0.08); }
+    .feat-icon.gold  { background: rgba(255,197,112,0.18); }
+
+    .feat h3 {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .feat p {
+      font-size: 10.5px;
+      color: var(--steel);
+      line-height: 1.55;
+    }
+
+    /* ── THEMES ─────────────────────────────────────────────── */
+    .themes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .theme {
+      background: linear-gradient(145deg, var(--navy) 0%, var(--navy2) 100%);
+      border-radius: 12px;
+      padding: 14px 15px;
+      color: white;
+    }
+
+    .theme-em {
+      font-size: 19px;
+      margin-bottom: 7px;
+    }
+
+    .theme h4 {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .theme p {
+      font-size: 9.5px;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.45;
+    }
+
+    /* ── SDG CARDS ──────────────────────────────────────────── */
+    .sdg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .sdg-card {
+      background: white;
+      border-radius: 12px;
+      padding: 14px 15px;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-top: 3px solid var(--sdg-color, #888);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+
+    .sdg-badge {
+      display: inline-block;
+      background: var(--sdg-color, #888);
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 2px 9px;
+      border-radius: 20px;
+      margin-bottom: 7px;
+    }
+
+    .sdg-card h4 {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 7px;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+    }
+
+    .sdg-card ul { list-style: none; padding: 0; }
+
+    .sdg-card ul li {
+      font-size: 9.5px;
+      color: var(--steel);
+      line-height: 1.45;
+      padding-left: 11px;
+      position: relative;
+      margin-bottom: 3px;
+    }
+
+    .sdg-card ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--sdg-color, #888);
+      font-size: 8px;
+      top: 1px;
+    }
+
+    /* ── TECH STACK ─────────────────────────────────────────── */
+    .tech-box {
+      background: white;
+      border-radius: 14px;
+      padding: 16px 18px;
+      border: 1px solid rgba(26,50,99,0.07);
+      margin-bottom: 20px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 11px;
+    }
+
+    .badge {
+      border-radius: 20px;
+      padding: 4px 11px;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .badge.navy-b {
+      background: rgba(26,50,99,0.07);
+      color: var(--navy);
+      border: 1px solid rgba(26,50,99,0.12);
+    }
+
+    .badge.gold-b {
+      background: rgba(255,197,112,0.18);
+      color: #7A4E00;
+      border: 1px solid rgba(255,197,112,0.45);
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    .footer {
+      background: linear-gradient(135deg, #0F1F40 0%, #1A3263 50%, #547792 100%);
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-brand {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: white;
+    }
+
+    .footer-brand span { color: var(--gold); }
+
+    .footer-sub {
+      font-size: 9px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .footer-right { text-align: right; }
+
+    .footer-right .repo {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .footer-right .desc {
+      font-size: 9px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.05em;
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
+
+    @media print {
+      body { background: none; padding: 0; }
+      .page { box-shadow: none; width: 100%; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ────────────────────────────────────────────── -->
+  <div class="header">
+    <div class="header-row">
+
+      <!-- Inline static logo SVG (self-contained, no external deps) -->
+      <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="f-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"  stop-color="#1A3263"/>
+            <stop offset="55%" stop-color="#3F5E78"/>
+            <stop offset="100%" stop-color="#547792"/>
+          </linearGradient>
+          <filter id="f-gl" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect width="100" height="100" rx="22" fill="url(#f-bg)"/>
+        <rect width="100" height="100" rx="22" fill="none" stroke="#FFC570" stroke-width="2.5" stroke-opacity="0.75"/>
+        <circle cx="50" cy="44" r="18" fill="none" stroke="#FFC570" stroke-opacity="0.25" stroke-width="0.75" stroke-dasharray="3 2.5"/>
+        <circle cx="50" cy="44" r="28" fill="none" stroke="#FFC570" stroke-opacity="0.12" stroke-width="0.75" stroke-dasharray="3 2.5"/>
+        <path d="M 18 65 Q 50 18 82 65" fill="none" stroke="#FFC570" stroke-width="1.2" stroke-dasharray="5 3.5" opacity="0.55"/>
+        <circle cx="37.2" cy="45.3" r="1.5" fill="#FFC570" opacity="0.35"/>
+        <circle cx="43.6" cy="42.4" r="2"   fill="#FFC570" opacity="0.6"/>
+        <g filter="url(#f-gl)" transform="translate(50, 41.5)">
+          <g fill="#FFD693">
+            <ellipse cx="0.5" cy="0" rx="7" ry="1.9"/>
+            <path d="M 1 -1.5 L -2.5 -8.5 L -4.5 -7.5 L -1.5 -1.5 Z"/>
+            <path d="M 1  1.5 L -2.5  8.5 L -4.5  7.5 L -1.5  1.5 Z"/>
+            <path d="M -4 -1.2 L -7 -4 L -5.8 -1.2 Z"/>
+            <path d="M -4  1.2 L -7  4 L -5.8  1.2 Z"/>
+          </g>
+        </g>
+        <rect x="26" y="81" width="5" height="9"  rx="1.5" fill="#FFC570" opacity="0.75"/>
+        <rect x="34" y="77" width="5" height="13" rx="1.5" fill="#FFC570" opacity="0.75"/>
+        <rect x="42" y="79" width="5" height="11" rx="1.5" fill="#FFC570" opacity="0.75"/>
+        <rect x="50" y="75" width="5" height="15" rx="1.5" fill="#FFC570" opacity="0.75"/>
+        <rect x="58" y="80" width="5" height="10" rx="1.5" fill="#FFC570" opacity="0.75"/>
+        <rect x="67" y="78" width="5" height="12" rx="1.5" fill="#FFC570" opacity="0.75"/>
+      </svg>
+
+      <div class="header-titles">
+        <h1>Sky<span>Insight</span></h1>
+        <div class="sub">AI-Powered Airline Intelligence Platform</div>
+      </div>
+    </div>
+
+    <p class="tagline">
+      A full-stack analytics and machine learning platform that transforms raw airline data into
+      <strong>actionable intelligence</strong> — spanning customer experience, operational safety,
+      sustainability, and strategic decision-making.
+    </p>
+  </div>
+
+  <div class="gold-bar"></div>
+
+  <!-- ── STATS ─────────────────────────────────────────────── -->
+  <div class="stats">
+    <div class="stat">
+      <div class="val">8</div>
+      <div class="lbl">AI Modules</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="val">5</div>
+      <div class="lbl">ML Models</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="val">3</div>
+      <div class="lbl">CNN Classifiers</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="val">129K+</div>
+      <div class="lbl">Records Analysed</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="val">Real-Time</div>
+      <div class="lbl">ONNX Inference</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="val">3-Tier</div>
+      <div class="lbl">Architecture</div>
+    </div>
+  </div>
+
+  <!-- ── CONTENT ───────────────────────────────────────────── -->
+  <div class="content">
+
+    <!-- Core Modules -->
+    <div class="section-label">Core Modules</div>
+    <div class="features">
+
+      <div class="feat">
+        <div class="feat-icon navy">📊</div>
+        <div>
+          <h3>Decision Insights</h3>
+          <p>Interactive BI dashboards surfacing KPIs, route performance, and loyalty segmentation directly from the airline data warehouse.</p>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-icon gold">⭐</div>
+        <div>
+          <h3>Satisfaction Prediction</h3>
+          <p>Logistic regression ONNX model predicts passenger satisfaction probability from 22 service and flight features in real time.</p>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-icon navy">✈️</div>
+        <div>
+          <h3>Delay Prediction</h3>
+          <p>ANN-based classifier forecasts flight delay risk using route, aircraft type, and scheduling signals with confidence scoring.</p>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-icon gold">🎯</div>
+        <div>
+          <h3>Loyal Circle</h3>
+          <p>K-Means customer clustering by loyalty tier and churn risk. Radar charts and profile cards reveal four distinct traveller archetypes.</p>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-icon navy">🌱</div>
+        <div>
+          <h3>CO₂ Forecasting</h3>
+          <p>Time-series regression model predicts carbon emissions per route, enabling airlines to optimise for sustainability targets.</p>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-icon gold">👁️</div>
+        <div>
+          <h3>Smart Vision</h3>
+          <p>EfficientNetV2-S CNN classifiers detect luggage damage, cabin cleanliness issues, and crowd density from uploaded photos.</p>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-icon navy">💬</div>
+        <div>
+          <h3>Reviews NLP</h3>
+          <p>Web scraping → VADER &amp; RoBERTa sentiment analysis → topic modelling → interactive visualisation in a single pipeline.</p>
+        </div>
+      </div>
+
+      <div class="feat">
+        <div class="feat-icon gold">🏆</div>
+        <div>
+          <h3>Performance Hub</h3>
+          <p>Consolidated model metrics, business impact scores, and cross-module comparisons in one analytical overview.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Project Themes -->
+    <div class="section-label">Project Themes</div>
+    <div class="themes">
+
+      <div class="theme">
+        <div class="theme-em">🛰️</div>
+        <h4>End-to-End AI Ownership</h4>
+        <p>From raw CSV ingestion to production ONNX inference — every layer designed and owned within the project.</p>
+      </div>
+
+      <div class="theme">
+        <div class="theme-em">⚡</div>
+        <h4>Real-Time Intelligence</h4>
+        <p>Sub-second predictions via FastAPI + ONNX Runtime, eliminating ML framework overhead at serve time.</p>
+      </div>
+
+      <div class="theme">
+        <div class="theme-em">🌿</div>
+        <h4>Sustainability</h4>
+        <p>CO₂ footprint modelling and route efficiency analysis supporting the industry's green aviation agenda.</p>
+      </div>
+
+      <div class="theme">
+        <div class="theme-em">🤝</div>
+        <h4>Customer Centricity</h4>
+        <p>Loyalty, churn, satisfaction, and review sentiment — every module keeps the passenger experience at its core.</p>
+      </div>
+
+      <div class="theme">
+        <div class="theme-em">🔒</div>
+        <h4>Operational Safety</h4>
+        <p>Delay forecasting and vision-based quality checks reduce operational risk and ground-level disruptions.</p>
+      </div>
+
+      <div class="theme">
+        <div class="theme-em">📡</div>
+        <h4>Data-Driven Decisions</h4>
+        <p>BI dashboards connect data warehouse insights directly to frontline operators and strategic planners.</p>
+      </div>
+
+    </div>
+
+    <!-- SDG Alignment -->
+    <div class="section-label">UN Sustainable Development Goals</div>
+    <div class="sdg-grid">
+
+      <div class="sdg-card" style="--sdg-color:#F36D25">
+        <div class="sdg-badge">SDG 9</div>
+        <h4>Industry, Innovation &amp; Infrastructure</h4>
+        <ul>
+          <li>Smart route optimisation to maximise load factor</li>
+          <li>CNN crowd analytics to reduce gate congestion</li>
+          <li>ANN delay forecasting for schedule reliability</li>
+          <li>Real-time operational KPI dashboard</li>
+        </ul>
+      </div>
+
+      <div class="sdg-card" style="--sdg-color:#BF8B2E">
+        <div class="sdg-badge">SDG 12</div>
+        <h4>Responsible Consumption &amp; Production</h4>
+        <ul>
+          <li>Fuel usage benchmarked per passenger-km per route</li>
+          <li>CV cleanliness model reduces chemical cleaning waste</li>
+          <li>Baggage QC vision cuts material damage and waste</li>
+          <li>NLP pipeline for transparent service quality reporting</li>
+        </ul>
+      </div>
+
+      <div class="sdg-card" style="--sdg-color:#3F7E44">
+        <div class="sdg-badge">SDG 13</div>
+        <h4>Climate Action</h4>
+        <ul>
+          <li>CO&#8322; regression model per route, aircraft &amp; season</li>
+          <li>Year-on-year emission trend BI dashboard</li>
+          <li>High-emission route flagging &amp; offset engine</li>
+          <li>Executive sustainability scorecard (Power BI)</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="tech-box">
+      <div class="section-label">Technology Stack</div>
+      <div class="badges">
+        <span class="badge gold-b">Python 3.11</span>
+        <span class="badge gold-b">FastAPI</span>
+        <span class="badge gold-b">ONNX Runtime</span>
+        <span class="badge gold-b">TensorFlow 2.21</span>
+        <span class="badge gold-b">scikit-learn</span>
+        <span class="badge navy-b">Next.js 15</span>
+        <span class="badge navy-b">TypeScript</span>
+        <span class="badge navy-b">Tailwind CSS</span>
+        <span class="badge navy-b">Recharts</span>
+        <span class="badge navy-b">HuggingFace</span>
+        <span class="badge navy-b">VADER NLP</span>
+        <span class="badge navy-b">SQL Server DW</span>
+        <span class="badge navy-b">Power BI</span>
+        <span class="badge navy-b">Git LFS</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <div class="footer">
+    <div>
+      <div class="footer-brand">Sky<span>Insight</span></div>
+      <div class="footer-sub">AI for Airlines · Built with precision</div>
+    </div>
+    <div class="footer-right">
+      <div class="repo">github.com/Larousse2001/SkyInsight</div>
+      <div class="desc">Full-Stack · Multi-Model · Production-Ready</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
