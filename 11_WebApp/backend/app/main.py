@@ -5,7 +5,7 @@ from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from .inference import predict_cnn, predict_delay, predict_satisfaction
-from .reports import get_co2_forecast, get_high_risk_customers, get_summary
+from .reports import get_cluster_analysis, get_co2_forecast, get_high_risk_customers, get_summary
 from .schemas import DelayRequest, SatisfactionRequest
 
 app = FastAPI(title="SkyInsight API", version="1.0.0")
@@ -37,6 +37,11 @@ def reports_co2() -> dict:
 @app.get("/api/reports/high-risk-customers")
 def reports_high_risk() -> dict:
     return get_high_risk_customers()
+
+
+@app.get("/api/reports/cluster-analysis")
+def reports_cluster() -> dict:
+    return get_cluster_analysis()
 
 
 @app.post("/api/predict/satisfaction")

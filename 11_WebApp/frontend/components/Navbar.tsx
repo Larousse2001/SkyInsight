@@ -9,13 +9,14 @@ import { useState } from "react";
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/dashboard", label: "Dashboard" },
-  { href: "/bi", label: "Power BI" },
-  { href: "/nlp", label: "Reviews NLP" },
+  { href: "/bi", label: "Decision Insights" },
+  { href: "/nlp", label: "Reviews" },
   { href: "/predict/satisfaction", label: "Satisfaction" },
   { href: "/predict/delay", label: "Delay" },
-  { href: "/predict/cnn", label: "Vision" },
-  { href: "/forecast/co2", label: "CO₂" },
-];
+  { href: "/clustering", label: "Loyal Circle" },
+  { href: "/predict/cnn", label: "SmartVision" },
+  { href: "/forecast/co2", label: "CO₂ Emissions" },
+  { href: "/performance", label: "Performance Hub" },];
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -53,15 +54,6 @@ export default function Navbar() {
             );
           })}
         </nav>
-
-        <div className="hidden lg:flex items-center gap-2">
-          <Link
-            href="/predict/satisfaction"
-            className="rounded-xl bg-gold px-4 py-2 text-sm font-semibold text-navy shadow-soft transition hover:brightness-95"
-          >
-            Try a model
-          </Link>
-        </div>
 
         <button
           aria-label="Toggle menu"

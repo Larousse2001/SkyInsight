@@ -5,7 +5,7 @@ import { BarChart3, ExternalLink, Maximize2, RefreshCcw } from "lucide-react";
 import { useRef, useState } from "react";
 
 const PBI_SRC =
-  "https://app.powerbi.com/reportEmbed?reportId=766574a9-5bf8-4631-8afe-605e8a71e6e6&autoAuth=true&ctid=604f1a96-cbe8-43f8-abbf-f8eaf5d85730";
+  "https://app.powerbi.com/reportEmbed?reportId=08f06fed-ac2f-470c-a340-619239713b0c&autoAuth=true&ctid=604f1a96-cbe8-43f8-abbf-f8eaf5d85730";
 
 export default function PowerBIPage() {
   const ref = useRef<HTMLIFrameElement>(null);

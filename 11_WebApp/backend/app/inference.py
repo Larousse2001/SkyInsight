@@ -85,9 +85,9 @@ def predict_satisfaction(req: dict[str, Any]) -> dict[str, Any]:
     x = _vec_from_satisfaction(req)
     in_name = sess.get_inputs()[0].name
     outputs = sess.run(None, {in_name: x})
-    # XGBoost ONNX commonly returns [labels, probabilities-dict-list] or [probs]
+    # sklearn ONNX returns [labels, probabilities-dict-list]; iterate reversed to hit probs first
     probs = None
-    for out in outputs:
+    for out in reversed(outputs):
         try:
             cand = _to_probs(out, 2)
             if cand is not None and len(cand) == 2:
@@ -111,15 +111,24 @@ def predict_delay(req: dict[str, Any]) -> dict[str, Any]:
     x = np.array([[float(req[f]) for f in DELAY_FEATURES]], dtype=np.float32)
     in_name = sess.get_inputs()[0].name
     outputs = sess.run(None, {in_name: x})
-    raw = np.asarray(outputs[0]).reshape(-1)
-    p = float(raw[0]) if raw.size == 1 else float(_softmax(raw)[-1])
-    p = max(0.0, min(1.0, p))
+    # Prefer the probability dict output (outputs[1] for sklearn ONNX) over labels (outputs[0])
+    probs = None
+    for out in reversed(outputs):
+        try:
+            cand = _to_probs(out, 2)
+            if cand is not None and len(cand) == 2:
+                probs = cand
+                break
+        except Exception:
+            continue
+    if probs is None:
+        probs = np.array([0.5, 0.5], dtype=np.float32)
     classes = ["On Time", "Delayed"]
-    idx = int(p >= 0.5)
+    idx = int(np.argmax(probs))
     return {
         "label": classes[idx],
-        "probabilities": {classes[0]: 1.0 - p, classes[1]: p},
-        "confidence": p if idx == 1 else 1.0 - p,
+        "probabilities": {classes[0]: float(probs[0]), classes[1]: float(probs[1])},
+        "confidence": float(probs[idx]),
     }
 
 
@@ -127,8 +136,8 @@ def predict_delay(req: dict[str, Any]) -> dict[str, Any]:
 
 def _preprocess_image(file_bytes: bytes, size: int = 224) -> np.ndarray:
     img = Image.open(io.BytesIO(file_bytes)).convert("RGB").resize((size, size))
-    arr = np.asarray(img, dtype=np.float32)  # [0,255]
-    arr = np.expand_dims(arr, axis=0)        # (1,H,W,3) - EfficientNetV2 NHWC
+    arr = np.asarray(img, dtype=np.float32) / 255.0  # rescale to [0, 1]
+    arr = np.expand_dims(arr, axis=0)                # (1,H,W,3) - NHWC
     return arr
 
 

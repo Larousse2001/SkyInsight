@@ -108,3 +108,24 @@ def get_high_risk_customers() -> dict:
         "columns": df.columns.tolist(),
         "rows": df.to_dict(orient="records"),
     }
+
+
+def get_cluster_analysis() -> dict:
+    sat_dir = REPORTS_DIR / "[ML] Airline Customer Satisfaction"
+    summary_csv = sat_dir / "cluster_summary.csv"
+    churn_csv = sat_dir / "cluster_churn_proxy.csv"
+    comparison_csv = sat_dir / "model_comparison.csv"
+
+    df_s = pd.read_csv(summary_csv) if summary_csv.exists() else pd.DataFrame()
+    df_c = pd.read_csv(churn_csv) if churn_csv.exists() else pd.DataFrame()
+    df_m = pd.read_csv(comparison_csv) if comparison_csv.exists() else pd.DataFrame()
+
+    if not df_s.empty and not df_c.empty:
+        df_merged = df_s.merge(df_c[["cluster", "churn_proxy"]], on="cluster", how="left")
+    else:
+        df_merged = df_s
+
+    return {
+        "clusters": df_merged.to_dict(orient="records") if not df_merged.empty else [],
+        "model_comparison": df_m.to_dict(orient="records") if not df_m.empty else [],
+    }

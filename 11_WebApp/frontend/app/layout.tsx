@@ -42,8 +42,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <h4 className="text-xs font-semibold uppercase tracking-widest text-gold">Product</h4>
               <ul className="mt-3 space-y-2 text-sm">
                 <li><Link href="/dashboard" className="hover:text-white">Executive Dashboard</Link></li>
-                <li><Link href="/bi" className="hover:text-white">Power BI Reports</Link></li>
-                <li><Link href="/nlp" className="hover:text-white">Reviews NLP</Link></li>
+                <li><Link href="/bi" className="hover:text-white">Decision Insights</Link></li>
+                <li><Link href="/nlp" className="hover:text-white">Reviews</Link></li>
                 <li><Link href="/predict/satisfaction" className="hover:text-white">Live Predictions</Link></li>
               </ul>
             </div>
