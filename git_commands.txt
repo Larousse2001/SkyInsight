@@ -17,3 +17,16 @@ git commit -m "Larousse"
 
 6) Push 
 git push origin main
+
+
+Run these commands to execute the project
+
+# main backend (port 8000)
+cd 11_WebApp\backend
+..\..\.venv\Scripts\python.exe -m uvicorn app.main:app --reload --port 8000
+
+# NLP backend (port 8001)
+.\.venv\Scripts\python.exe -m uvicorn 10_NLP.app.api:app --reload --port 8001 --reload-dir 10_NLP/app
+
+# frontend
+cd 11_WebApp\frontend && npm run dev
