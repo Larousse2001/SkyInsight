@@ -8,6 +8,7 @@ import {
 import {
   MessageSquare, Smile, Frown, Hash, Tags, Search, Sparkles, Loader2,
   Lightbulb, AlertTriangle, TrendingUp, Target, Clock, Rocket,
+  Cloud, Plane, Star, AlignLeft,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -67,6 +68,16 @@ type AspectRow = { topic_label: string; sent_bert_label: string; count: number }
 type AspectResponse = { available: boolean; items: AspectRow[] };
 type TimeseriesRow = { date: string; topic_label: string; count: number; neg: number; neg_share: number };
 type TimeseriesResponse = { available: boolean; items: TimeseriesRow[] };
+type WordCloudItem = { text: string; value: number };
+type WordCloudResponse = { available: boolean; n_reviews: number; source_column: string; items: WordCloudItem[] };
+type AirlineStatRow = {
+  airline: string; count: number; avg_rating: number | null;
+  vader_positive: number; vader_neutral: number; vader_negative: number;
+  bert_positive: number; bert_negative: number;
+};
+type AirlineStatsResponse = { available: boolean; items: AirlineStatRow[] };
+type RatingDistResponse = { available: boolean; mean?: number; median?: number; items: { label: string; count: number }[] };
+type LengthDistResponse = { available: boolean; mean?: number; median?: number; items: { label: string; count: number }[] };
 
 const COLORS = ["#1A3263", "#547792", "#FFC570", "#EFD2B0", "#3F5E78", "#28456A", "#FFD693"];
 
@@ -306,6 +317,102 @@ function TopicTimeSeries({ items }: { items: { date: string; topic_label: string
   );
 }
 
+// ── Word cloud (dependency-free: scaled inline text) ─────────────────────────
+function WordCloud({ items, tone = "mixed" }: { items: WordCloudItem[]; tone?: "positive" | "negative" | "neutral" | "mixed" }) {
+  if (!items || items.length === 0) {
+    return <p className="text-sm text-steel">No terms to display for the current filter.</p>;
+  }
+  const max = items[0]?.value ?? 1;
+  const min = items[items.length - 1]?.value ?? 1;
+  const minPx = 12;
+  const maxPx = 44;
+  // Sentiment-aware lexicons used to colour individual terms inside a mixed cloud.
+  const NEG = new Set([
+    "poor","bad","worst","terrible","awful","rude","delay","delayed","cancel","cancelled","cancellation",
+    "lost","missed","late","horrible","disappointing","disappointed","unhelpful","refund","complaint","broken",
+    "dirty","uncomfortable","slow","problem","issue","wait","waiting","stuck","never","worse","unprofessional",
+  ]);
+  const POS = new Set([
+    "good","great","excellent","amazing","wonderful","best","love","loved","comfortable","clean","friendly",
+    "helpful","smooth","easy","perfect","awesome","fantastic","enjoy","enjoyed","pleasant","polite","quick",
+    "professional","outstanding","kind","nice","recommend",
+  ]);
+
+  function colorFor(w: string): string {
+    if (tone === "positive") return "#1f7a5a"; // emerald-700
+    if (tone === "negative") return "#b91c1c"; // red-700
+    if (tone === "neutral") return "#547792";
+    if (NEG.has(w)) return "#b91c1c";
+    if (POS.has(w)) return "#1f7a5a";
+    return "#1A3263";
+  }
+
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-xl bg-brand-50 p-5 leading-tight">
+      {items.map((w) => {
+        const ratio = max === min ? 1 : (w.value - min) / (max - min);
+        const size = Math.round(minPx + ratio * (maxPx - minPx));
+        const weight = 400 + Math.round(ratio * 500);
+        return (
+          <span
+            key={w.text}
+            title={`${w.text}: ${w.value.toLocaleString()} occurrences`}
+            style={{ fontSize: `${size}px`, fontWeight: weight, color: colorFor(w.text), lineHeight: 1.1 }}
+            className="inline-block transition-transform hover:scale-110"
+          >
+            {w.text}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── Per-airline sentiment stacked bar ────────────────────────────────────────
+function AirlineSentimentChart({ items }: { items: AirlineStatRow[] }) {
+  if (!items || items.length === 0) return null;
+  const data = items.map((a) => ({
+    airline: a.airline.length > 18 ? a.airline.slice(0, 17) + "…" : a.airline,
+    positive: a.vader_positive,
+    neutral: a.vader_neutral,
+    negative: a.vader_negative,
+    avg: a.avg_rating ?? 0,
+  }));
+  return (
+    <div className="h-72">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} layout="vertical" margin={{ left: 0, right: 16, top: 4, bottom: 4 }}>
+          <CartesianGrid stroke="#EFD2B0" strokeDasharray="3 3" />
+          <XAxis type="number" tick={{ fill: "#547792", fontSize: 11 }} />
+          <YAxis type="category" dataKey="airline" tick={{ fill: "#1A3263", fontSize: 11 }} width={130} />
+          <Tooltip />
+          <Legend wrapperStyle={{ fontSize: 11 }} />
+          <Bar dataKey="positive" stackId="s" fill="#1f7a5a" />
+          <Bar dataKey="neutral"  stackId="s" fill="#FFC570" />
+          <Bar dataKey="negative" stackId="s" fill="#b91c1c" />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+// ── Simple histogram (rating, length) ────────────────────────────────────────
+function SimpleHistogram({ items, color = "#1A3263", yLabel }: { items: { label: string; count: number }[]; color?: string; yLabel?: string }) {
+  return (
+    <div className="h-56">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={items} margin={{ left: 0, right: 12, top: 4, bottom: 4 }}>
+          <CartesianGrid stroke="#EFD2B0" strokeDasharray="3 3" />
+          <XAxis dataKey="label" tick={{ fill: "#547792", fontSize: 11 }} />
+          <YAxis tick={{ fill: "#547792", fontSize: 11 }} label={yLabel ? { value: yLabel, angle: -90, position: "insideLeft", fill: "#547792", fontSize: 11 } : undefined} />
+          <Tooltip />
+          <Bar dataKey="count" fill={color} radius={[6, 6, 0, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
 export default function NlpPage() {
   // ── data state ─────────────────────────────────────────────────────────────
   const [stats, setStats] = useState<Stats | null>(null);
@@ -315,6 +422,11 @@ export default function NlpPage() {
   const [baseline, setBaseline] = useState<Baseline | null>(null);
   const [aspect, setAspect] = useState<AspectResponse | null>(null);
   const [timeseries, setTimeseries] = useState<TimeseriesResponse | null>(null);
+  const [wordcloud, setWordcloud] = useState<WordCloudResponse | null>(null);
+  const [wordcloudBusy, setWordcloudBusy] = useState(false);
+  const [airlineStats, setAirlineStats] = useState<AirlineStatsResponse | null>(null);
+  const [ratingDist, setRatingDist] = useState<RatingDistResponse | null>(null);
+  const [lengthDist, setLengthDist] = useState<LengthDistResponse | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewsTotal, setReviewsTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -354,7 +466,24 @@ export default function NlpPage() {
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
+
+    // Independent fetches — failures don't block the main view
+    jget<AirlineStatsResponse>("/airline-stats?top=10").then(setAirlineStats).catch(() => setAirlineStats({ available: false, items: [] }));
+    jget<RatingDistResponse>("/rating-distribution").then(setRatingDist).catch(() => setRatingDist({ available: false, items: [] }));
+    jget<LengthDistResponse>("/length-distribution").then(setLengthDist).catch(() => setLengthDist({ available: false, items: [] }));
   }, []);
+
+  // Word cloud — reacts to the same filters as the review explorer
+  useEffect(() => {
+    const params = new URLSearchParams({ top: "70" });
+    if (filterSentiment) params.set("sentiment", filterSentiment);
+    if (filterTopic) params.set("topic", filterTopic);
+    setWordcloudBusy(true);
+    jget<WordCloudResponse>(`/wordcloud?${params}`)
+      .then(setWordcloud)
+      .catch(() => setWordcloud({ available: false, n_reviews: 0, source_column: "", items: [] }))
+      .finally(() => setWordcloudBusy(false));
+  }, [filterSentiment, filterTopic]);
 
   // Debounce search
   useEffect(() => {
@@ -941,7 +1070,120 @@ export default function NlpPage() {
             </div>
           </div>
 
-          <div className="mt-5 grid gap-3 md:grid-cols-2">
+          {/* ── Review insights ─────────────────────────────────────────── */}
+          <div className="mt-6 space-y-6">
+            {/* Word cloud — reacts to the same filters */}
+            <div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-sm font-semibold text-navy">
+                  <Cloud className="h-4 w-4 text-steel" />
+                  Word cloud — most frequent terms
+                  {wordcloudBusy && <Loader2 className="h-3 w-3 animate-spin text-steel" />}
+                </div>
+                <span className="text-xs text-steel">
+                  {wordcloud?.n_reviews?.toLocaleString() ?? "—"} reviews
+                  {filterSentiment && ` · ${filterSentiment}`}
+                  {filterTopic && ` · topic #${filterTopic}`}
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-steel">
+                Built from the lemmatised, stop-word-filtered review text.
+                Red = negative sentiment terms, green = positive, navy = neutral / domain-specific.
+              </p>
+              <div className="mt-3">
+                {wordcloud && wordcloud.items.length > 0 ? (
+                  <WordCloud
+                    items={wordcloud.items}
+                    tone={
+                      filterSentiment === "positive" ? "positive" :
+                      filterSentiment === "negative" ? "negative" :
+                      filterSentiment === "neutral"  ? "neutral"  : "mixed"
+                    }
+                  />
+                ) : (
+                  <p className="text-sm text-steel">No terms to display for the current filter.</p>
+                )}
+              </div>
+            </div>
+
+            {/* 3-column insight grid */}
+            <div className="grid gap-4 lg:grid-cols-3">
+              {/* Rating distribution */}
+              <div className="rounded-xl bg-white p-4 ring-1 ring-brand-100">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-navy">
+                    <Star className="h-4 w-4 text-gold" /> Rating distribution
+                  </div>
+                  {ratingDist?.available && (
+                    <span className="text-xs text-steel">
+                      μ {ratingDist.mean} · med {ratingDist.median}
+                    </span>
+                  )}
+                </div>
+                {ratingDist?.available
+                  ? <div className="mt-2"><SimpleHistogram items={ratingDist.items} color="#FFC570" yLabel="reviews" /></div>
+                  : <p className="mt-3 text-sm text-steel">No rating data.</p>}
+              </div>
+
+              {/* Length distribution */}
+              <div className="rounded-xl bg-white p-4 ring-1 ring-brand-100">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-navy">
+                    <AlignLeft className="h-4 w-4 text-steel" /> Review length (words)
+                  </div>
+                  {lengthDist?.available && (
+                    <span className="text-xs text-steel">
+                      μ {lengthDist.mean} · med {lengthDist.median}
+                    </span>
+                  )}
+                </div>
+                {lengthDist?.available
+                  ? <div className="mt-2"><SimpleHistogram items={lengthDist.items} color="#547792" yLabel="reviews" /></div>
+                  : <p className="mt-3 text-sm text-steel">No length data.</p>}
+              </div>
+
+              {/* Top entities mini-bar */}
+              <div className="rounded-xl bg-white p-4 ring-1 ring-brand-100">
+                <div className="flex items-center gap-2 text-sm font-semibold text-navy">
+                  <Tags className="h-4 w-4 text-steel" /> Top named entities
+                </div>
+                <p className="mt-1 text-[11px] text-steel">spaCy NER — most-mentioned places, brands and dates.</p>
+                {entities.length > 0 ? (
+                  <div className="mt-2 h-56">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={entities.slice(0, 10).map(e => ({ name: (e.entity || e.text || "").split(":")[0], count: e.count }))} layout="vertical" margin={{ left: 0, right: 12 }}>
+                        <CartesianGrid stroke="#EFD2B0" strokeDasharray="3 3" />
+                        <XAxis type="number" tick={{ fill: "#547792", fontSize: 10 }} />
+                        <YAxis type="category" dataKey="name" tick={{ fill: "#1A3263", fontSize: 10 }} width={90} />
+                        <Tooltip />
+                        <Bar dataKey="count" fill="#1A3263" radius={[0, 4, 4, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                ) : <p className="mt-3 text-sm text-steel">No entities.</p>}
+              </div>
+            </div>
+
+            {/* Per-airline sentiment breakdown */}
+            {airlineStats?.available && airlineStats.items.length > 0 && (
+              <div className="rounded-xl bg-white p-4 ring-1 ring-brand-100">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-navy">
+                    <Plane className="h-4 w-4 text-steel" /> Sentiment by airline (top {airlineStats.items.length})
+                  </div>
+                  <span className="text-xs text-steel">VADER positive · neutral · negative</span>
+                </div>
+                <p className="mt-1 text-xs text-steel">
+                  Stacked counts highlight which carriers dominate the negative-review pool.
+                </p>
+                <div className="mt-3">
+                  <AirlineSentimentChart items={airlineStats.items} />
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
             {loading && <p className="text-sm text-steel">Loading…</p>}
             {!loading && reviews.length === 0 && <p className="text-sm text-steel">No reviews match.</p>}
             {reviews.map((r, i) => {

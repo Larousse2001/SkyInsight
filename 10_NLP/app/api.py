@@ -378,3 +378,150 @@ def timeseries():
     if not records:
         return {"available": False, "items": []}
     return {"available": True, "items": records}
+
+
+# ── Word cloud / term frequency ───────────────────────────────────────────────
+# Generic English + airline-domain stopwords filtered out of the cloud so we
+# don't get "flight, airline, plane" dominating every bucket.
+_CLOUD_STOPWORDS = {
+    "flight", "flights", "airline", "airlines", "plane", "planes", "fly", "flying",
+    "trip", "travel", "travelling", "traveling", "airport", "airports", "passenger",
+    "passengers", "review", "reviews", "experience", "experiences", "time", "day",
+    "days", "hour", "hours", "minute", "minutes", "year", "years", "people", "thing",
+    "things", "way", "also", "even", "would", "could", "really", "very", "much",
+    "many", "lot", "lots", "ever", "still", "back", "one", "two", "three", "first",
+    "second", "next", "last", "another", "go", "going", "got", "get", "getting",
+    "make", "made", "say", "said", "tell", "told", "take", "took", "give", "gave",
+    "come", "came", "use", "used", "know", "knew", "see", "saw", "look", "looked",
+    "want", "wanted", "need", "needed", "ask", "asked", "try", "tried", "feel",
+    "felt", "think", "thought", "let", "leave", "left", "put", "find", "found",
+}
+
+
+def _word_counts(texts, top_n: int, min_len: int = 3):
+    from collections import Counter
+    counter: Counter = Counter()
+    for t in texts:
+        if not isinstance(t, str):
+            continue
+        for w in t.lower().split():
+            w = w.strip(".,!?;:\"'()[]{}/")
+            if len(w) < min_len or not w.isalpha():
+                continue
+            if w in _CLOUD_STOPWORDS:
+                continue
+            counter[w] += 1
+    return counter.most_common(top_n)
+
+
+@app.get("/wordcloud")
+def wordcloud(
+    sentiment: Optional[str] = None,
+    topic: Optional[int] = None,
+    airline: Optional[str] = None,
+    top: int = Query(80, ge=10, le=300),
+):
+    """Return [{text, value}] suitable for a word-cloud visualisation.
+
+    Filters mirror /reviews so the cloud can react to the same controls.
+    Uses ``text_nostop`` (lemmatised + stop-words removed) when present.
+    """
+    df = _load_reviews()
+    if sentiment:
+        df = df[df["sent_vader_label"].astype(str).str.lower() == sentiment.lower()]
+    if topic is not None:
+        df = df[df["topic_id"] == topic]
+    if airline:
+        df = df[df["airline"].astype(str).str.lower() == airline.lower()]
+
+    col = "text_nostop" if "text_nostop" in df.columns and df["text_nostop"].notna().any() else "text_clean"
+    pairs = _word_counts(df[col].dropna().astype(str).tolist(), top_n=top)
+    return {
+        "available": len(pairs) > 0,
+        "n_reviews": int(len(df)),
+        "source_column": col,
+        "items": [{"text": w, "value": int(c)} for w, c in pairs],
+    }
+
+
+# ── Per-airline sentiment breakdown ───────────────────────────────────────────
+@app.get("/airline-stats")
+def airline_stats(top: int = Query(12, ge=1, le=50)):
+    """Top airlines by review volume with VADER/BERT sentiment split + avg rating."""
+    df = _load_reviews()
+    if "airline" not in df.columns:
+        return {"available": False, "items": []}
+    df = df[df["airline"].astype(str).str.strip().ne("")]
+
+    counts = df["airline"].value_counts().head(top)
+    items = []
+    for name, n in counts.items():
+        sub = df[df["airline"] == name]
+        vader_counts = sub["sent_vader_label"].astype(str).str.lower().value_counts().to_dict()
+        bert_counts = sub["sent_bert_label"].astype(str).str.upper().value_counts().to_dict()
+        try:
+            avg_rating = float(sub["rating_norm"].dropna().astype(float).mean())
+        except Exception:
+            avg_rating = None
+        items.append({
+            "airline": str(name),
+            "count": int(n),
+            "avg_rating": None if avg_rating is None or pd.isna(avg_rating) else round(avg_rating, 2),
+            "vader_positive": int(vader_counts.get("positive", 0)),
+            "vader_neutral": int(vader_counts.get("neutral", 0)),
+            "vader_negative": int(vader_counts.get("negative", 0)),
+            "bert_positive": int(bert_counts.get("POSITIVE", 0)),
+            "bert_negative": int(bert_counts.get("NEGATIVE", 0)),
+        })
+    return {"available": True, "items": items}
+
+
+# ── Rating distribution (normalised 1–5 scale) ────────────────────────────────
+@app.get("/rating-distribution")
+def rating_distribution():
+    df = _load_reviews()
+    if "rating_norm" not in df.columns:
+        return {"available": False, "items": []}
+    s = pd.to_numeric(df["rating_norm"], errors="coerce").dropna()
+    if s.empty:
+        return {"available": False, "items": []}
+    # 5 buckets aligned with star ratings: [≤1, (1,2], (2,3], (3,4], (4,5]]
+    buckets = [
+        ("1 ★", 0.0, 1.5),
+        ("2 ★", 1.5, 2.5),
+        ("3 ★", 2.5, 3.5),
+        ("4 ★", 3.5, 4.5),
+        ("5 ★", 4.5, 5.01),
+    ]
+    items = [
+        {"label": lbl, "count": int(((s >= lo) & (s < hi)).sum())}
+        for (lbl, lo, hi) in buckets
+    ]
+    return {
+        "available": True,
+        "mean": round(float(s.mean()), 2),
+        "median": round(float(s.median()), 2),
+        "items": items,
+    }
+
+
+# ── Review length distribution (in words) ─────────────────────────────────────
+@app.get("/length-distribution")
+def length_distribution():
+    df = _load_reviews()
+    if "word_len" not in df.columns:
+        return {"available": False, "items": []}
+    s = pd.to_numeric(df["word_len"], errors="coerce").dropna()
+    if s.empty:
+        return {"available": False, "items": []}
+    bins = [(0, 25), (25, 50), (50, 100), (100, 200), (200, 10_000)]
+    labels = ["≤25", "26-50", "51-100", "101-200", "200+"]
+    items = []
+    for (lo, hi), lbl in zip(bins, labels):
+        items.append({"label": lbl, "count": int(((s >= lo) & (s < hi)).sum())})
+    return {
+        "available": True,
+        "mean": round(float(s.mean()), 1),
+        "median": round(float(s.median()), 1),
+        "items": items,
+    }
