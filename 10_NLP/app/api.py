@@ -59,9 +59,18 @@ def _load_reviews() -> pd.DataFrame:
     if not path.exists():
         raise HTTPException(status_code=404, detail=f"reviews file not found: {path}")
     df = pd.read_csv(path, encoding="utf-8", encoding_errors="ignore")
-    for c in ["sent_vader_label", "sent_bert_label", "topic_id", "text_clean", "entities", "sent_vader"]:
+    for c in ["sent_vader_label", "sent_bert_label", "topic_id", "topic_label", "text_clean", "entities", "sent_vader"]:
         if c not in df.columns:
             df[c] = None
+    # Backfill topic_label from lda_topics.csv if missing
+    if df["topic_label"].isna().all() and df["topic_id"].notna().any():
+        try:
+            tdf = pd.read_csv(OUTPUT_DIR / "lda_topics.csv")
+            if "topic_label" in tdf.columns:
+                mapping = dict(zip(tdf["topic_id"].astype(int), tdf["topic_label"].astype(str)))
+                df["topic_label"] = df["topic_id"].map(mapping)
+        except Exception:
+            pass
     return df
 
 
@@ -92,7 +101,10 @@ def _load_top_entities() -> pd.DataFrame:
 
 _sia = None
 _bert = None
+_baseline_vec = None
+_baseline_model = None
 _models_error: str | None = None
+MODELS_DIR = OUTPUT_DIR / "models"
 
 
 def _ensure_models():
@@ -115,6 +127,27 @@ def _ensure_models():
         except Exception:
             _models_error = traceback.format_exc()
             raise HTTPException(status_code=500, detail=f"Model load failed:\n{_models_error}")
+
+
+def _ensure_baseline():
+    """Lazy-load the persisted TF-IDF baseline model (LogReg/NB/SVC + vectorizer)."""
+    global _baseline_vec, _baseline_model
+    if _baseline_vec is not None and _baseline_model is not None:
+        return
+    try:
+        import joblib
+        vec_p = MODELS_DIR / "baseline_vectorizer.joblib"
+        mdl_p = MODELS_DIR / "baseline_best_model.joblib"
+        if not vec_p.exists() or not mdl_p.exists():
+            raise FileNotFoundError(
+                f"Baseline artifacts not found in {MODELS_DIR}. "
+                "Run the notebook (cell 4c) to generate them."
+            )
+        _baseline_vec = joblib.load(vec_p)
+        _baseline_model = joblib.load(mdl_p)
+    except Exception:
+        # Surface a clean message; keep _baseline_* as None so retry stays possible.
+        raise HTTPException(status_code=503, detail=traceback.format_exc())
 
 
 class SentimentIn(BaseModel):
@@ -181,11 +214,20 @@ def distributions():
         .rename_axis("label").reset_index(name="count")
         .to_dict(orient="records")
     )
-    topics = (
+    # Topic distribution — enrich with human-readable label when available
+    topic_counts = (
         df["topic_id"].value_counts(dropna=True).sort_index()
         .rename_axis("topic_id").reset_index(name="count")
-        .to_dict(orient="records")
     )
+    try:
+        tdf = _load_topics()
+        if "topic_label" in tdf.columns:
+            topic_counts = topic_counts.merge(
+                tdf[["topic_id", "topic_label"]], on="topic_id", how="left"
+            )
+    except HTTPException:
+        pass
+    topics = topic_counts.fillna("").to_dict(orient="records")
     hist = []
     s = pd.to_numeric(df["sent_vader"], errors="coerce").dropna()
     if not s.empty:
@@ -203,6 +245,24 @@ def distributions():
 @app.get("/topics")
 def topics():
     return _load_topics().to_dict(orient="records")
+
+
+@lru_cache(maxsize=1)
+def _load_baseline() -> dict:
+    path = OUTPUT_DIR / "baseline_metrics.json"
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@app.get("/baseline")
+def baseline():
+    """Baseline ML benchmark (LogReg + MultinomialNB on TF-IDF, with SMOTE)."""
+    data = _load_baseline()
+    if not data:
+        return {"available": False, "message": "Run the notebook to generate baseline_metrics.json"}
+    return {"available": True, **data}
 
 
 @app.get("/entities")
@@ -234,7 +294,7 @@ def reviews(
     end = start + page_size
     cols = [c for c in [
         "text_clean", "sent_vader_label", "sent_vader",
-        "sent_bert_label", "sent_bert_score", "topic_id", "entities",
+        "sent_bert_label", "sent_bert_score", "topic_id", "topic_label", "entities",
     ] if c in df.columns]
     items = df.iloc[start:end][cols].fillna("").to_dict(orient="records")
     return {"total": total, "page": page, "page_size": page_size, "items": items}
@@ -253,8 +313,68 @@ def sentiment(payload: SentimentIn):
 
     bert_out = _bert(text)[0]
 
+    # Try the persisted TF-IDF baseline (best of LogReg/NB/SVC) — non-fatal if missing
+    baseline_pred = None
+    try:
+        _ensure_baseline()
+        X = _baseline_vec.transform([text])
+        pred = _baseline_model.predict(X)[0]
+        proba = None
+        if hasattr(_baseline_model, "predict_proba"):
+            probs = _baseline_model.predict_proba(X)[0]
+            classes = list(getattr(_baseline_model, "classes_", []))
+            proba = {str(c): float(p) for c, p in zip(classes, probs)}
+        baseline_pred = {
+            "label": str(pred),
+            "model": type(_baseline_model).__name__,
+            "proba": proba,
+        }
+    except HTTPException:
+        baseline_pred = None
+    except Exception:
+        baseline_pred = None
+
     return {
         "text": text,
         "vader": {"label": vader_label, **{k: float(v) for k, v in vader.items()}},
         "distilbert": {"label": bert_out["label"], "score": float(bert_out["score"])},
+        "baseline": baseline_pred,
     }
+
+
+# ── Aspect-based sentiment (topic × BERT sentiment matrix) ────────────────────
+@lru_cache(maxsize=1)
+def _load_aspect_sentiment() -> list:
+    path = OUTPUT_DIR / "aspect_sentiment.csv"
+    if not path.exists():
+        return []
+    df = pd.read_csv(path)
+    return df.to_dict(orient="records")
+
+
+@app.get("/aspect-sentiment")
+def aspect_sentiment():
+    """Topic × DistilBERT sentiment matrix for the heatmap view."""
+    records = _load_aspect_sentiment()
+    if not records:
+        return {"available": False, "items": []}
+    return {"available": True, "items": records}
+
+
+# ── Topic time series (rolling negative share per topic per day) ──────────────
+@lru_cache(maxsize=1)
+def _load_timeseries() -> list:
+    path = OUTPUT_DIR / "topic_timeseries.csv"
+    if not path.exists():
+        return []
+    df = pd.read_csv(path)
+    return df.to_dict(orient="records")
+
+
+@app.get("/timeseries")
+def timeseries():
+    """Per-topic daily review volume + negative share (BERT)."""
+    records = _load_timeseries()
+    if not records:
+        return {"available": False, "items": []}
+    return {"available": True, "items": records}

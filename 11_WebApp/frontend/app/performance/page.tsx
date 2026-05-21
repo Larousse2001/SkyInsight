@@ -84,8 +84,10 @@ const INSIGHTS = [
     module: "NLP — Airline Reviews",
     question: "What are passengers really saying, and does it match our internal data?",
     findings: [
+      "Baseline ML benchmark (LogReg + Multinomial NB on TF-IDF, with SMOTE) gives a fast, explainable reference point before invoking heavy NLP models.",
       "LDA topics surface the same top pain points as the satisfaction model: seat comfort, Wi-Fi, delays — validating both datasets.",
       "DistilBERT sentiment catches nuanced negative reviews that VADER misses (sarcasm, faint praise) — ~8% disagreement rate.",
+      "Topics are auto-labelled (Delays, Baggage, Crew, Seat Comfort…) instead of opaque numeric IDs, and reduced to a meaningful k=5.",
       "NER identifies specific airline brands, routes, and aircraft types mentioned — enabling competitor benchmarking from public reviews.",
     ],
     impact: "Continuous review monitoring provides a real-time satisfaction signal weeks before formal survey results arrive.",
@@ -206,11 +208,12 @@ const CNN_TASKS = [
 ];
 
 const NLP_COMPONENTS = [
+  { name: "Baseline (LogReg + NB)", detail: "TF-IDF features · SMOTE-balanced benchmark", tag: "Baseline" },
   { name: "VADER Sentiment", detail: "Rule-based lexicon · compound score", tag: "NLP" },
   { name: "DistilBERT Sentiment", detail: "HuggingFace Transformers · fine-tuned", tag: "Transformer" },
-  { name: "LDA Topic Modeling", detail: "Latent Dirichlet Allocation · gensim", tag: "Unsupervised" },
+  { name: "LDA Topic Modeling", detail: "Latent Dirichlet Allocation · k=5 · auto-labelled", tag: "Unsupervised" },
   { name: "Named Entity Recognition", detail: "spaCy en_core_web_sm", tag: "NLP" },
-  { name: "TF-IDF Keywords", detail: "Top unigrams / bigrams per topic", tag: "NLP" },
+  { name: "Lemmatization & Cleaning", detail: "spaCy lemmas · URL / PROPN / stopword filtering", tag: "Preprocess" },
   { name: "Review Scraper", detail: "Selenium + BeautifulSoup pipeline", tag: "ETL" },
 ];
 
@@ -475,7 +478,7 @@ export default function PerformancePage() {
           <div className="flex flex-wrap gap-3">
             <StatBadge label="Scraped reviews" value="~10,000+" />
             <StatBadge label="Sentiment models" value="VADER + DistilBERT" />
-            <StatBadge label="Topics (LDA)" value="Configurable k" />
+            <StatBadge label="Topics (LDA)" value="k=5, auto-labelled" />
             <StatBadge label="NER engine" value="spaCy" />
           </div>
         </Card>

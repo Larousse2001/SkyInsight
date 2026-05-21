@@ -1,0 +1,522 @@
+date,topic_label,count,neg,neg_share
+2024-02-02,Refunds & Booking Policy,1,1,1.0
+2024-02-09,Refunds & Booking Policy,1,1,1.0
+2024-03-05,Delays & Cancellations,1,1,1.0
+2024-04-10,Refunds & Booking Policy,1,1,1.0
+2024-05-16,Refunds & Booking Policy,1,1,1.0
+2024-05-19,Refunds & Booking Policy,1,0,0.0
+2024-05-23,Delays & Cancellations,1,1,1.0
+2024-05-25,Crew & Onboard Service,1,1,1.0
+2024-06-01,Refunds & Booking Policy,1,1,1.0
+2024-06-03,Refunds & Booking Policy,1,1,1.0
+2024-06-07,Refunds & Booking Policy,1,1,1.0
+2024-06-11,Refunds & Booking Policy,1,1,1.0
+2024-06-24,Crew & Onboard Service,1,1,1.0
+2024-07-01,Refunds & Booking Policy,1,1,1.0
+2024-07-08,Refunds & Booking Policy,1,1,1.0
+2024-07-21,Refunds & Booking Policy,1,1,1.0
+2024-08-02,Delays & Cancellations,1,1,1.0
+2024-08-19,Delays & Cancellations,1,1,1.0
+2024-08-19,Refunds & Booking Policy,1,1,1.0
+2024-08-26,Delays & Cancellations,1,1,1.0
+2024-10-04,Delays & Cancellations,1,1,1.0
+2024-11-08,Delays & Cancellations,1,1,1.0
+2024-11-11,Refunds & Booking Policy,1,1,1.0
+2024-11-14,Refunds & Booking Policy,1,1,1.0
+2024-11-28,Refunds & Booking Policy,1,0,0.0
+2024-11-30,Crew & Onboard Service,1,1,1.0
+2024-12-05,Refunds & Booking Policy,1,0,0.0
+2024-12-08,Crew & Onboard Service,1,1,1.0
+2024-12-08,Refunds & Booking Policy,1,1,1.0
+2024-12-30,Delays & Cancellations,1,1,1.0
+2024-12-31,Delays & Cancellations,1,1,1.0
+2025-01-02,Refunds & Booking Policy,1,1,1.0
+2025-01-22,Refunds & Booking Policy,1,1,1.0
+2025-02-15,Delays & Cancellations,1,1,1.0
+2025-02-18,Refunds & Booking Policy,1,1,1.0
+2025-02-25,Refunds & Booking Policy,1,1,1.0
+2025-03-02,Refunds & Booking Policy,1,1,1.0
+2025-03-04,Refunds & Booking Policy,1,1,1.0
+2025-03-17,Refunds & Booking Policy,1,1,1.0
+2025-03-31,Refunds & Booking Policy,1,1,1.0
+2025-04-07,Refunds & Booking Policy,1,1,1.0
+2025-04-15,Crew & Onboard Service,1,1,1.0
+2025-04-16,Refunds & Booking Policy,1,1,1.0
+2025-04-21,Crew & Onboard Service,1,1,1.0
+2025-04-25,Crew & Onboard Service,1,1,1.0
+2025-04-27,Refunds & Booking Policy,1,1,1.0
+2025-04-30,Delays & Cancellations,1,1,1.0
+2025-04-30,Refunds & Booking Policy,1,0,0.0
+2025-05-03,Delays & Cancellations,1,1,1.0
+2025-05-04,Refunds & Booking Policy,1,1,1.0
+2025-05-06,Delays & Cancellations,1,1,1.0
+2025-05-08,Delays & Cancellations,1,1,1.0
+2025-05-08,Refunds & Booking Policy,1,0,0.0
+2025-05-12,Refunds & Booking Policy,1,1,1.0
+2025-05-15,Refunds & Booking Policy,1,0,0.0
+2025-05-17,Refunds & Booking Policy,1,0,0.0
+2025-05-21,Crew & Onboard Service,1,0,0.0
+2025-05-22,Crew & Onboard Service,1,1,1.0
+2025-05-23,Delays & Cancellations,1,1,1.0
+2025-05-24,Crew & Onboard Service,1,1,1.0
+2025-05-28,Refunds & Booking Policy,1,1,1.0
+2025-05-31,Delays & Cancellations,1,1,1.0
+2025-05-31,Refunds & Booking Policy,1,1,1.0
+2025-06-03,Refunds & Booking Policy,1,1,1.0
+2025-06-04,Refunds & Booking Policy,1,0,0.0
+2025-06-07,Refunds & Booking Policy,1,1,1.0
+2025-06-08,Crew & Onboard Service,1,1,1.0
+2025-06-08,Refunds & Booking Policy,2,2,1.0
+2025-06-10,Refunds & Booking Policy,3,1,0.333
+2025-06-11,Refunds & Booking Policy,1,1,1.0
+2025-06-12,Refunds & Booking Policy,2,1,0.5
+2025-06-14,Refunds & Booking Policy,1,1,1.0
+2025-06-15,Refunds & Booking Policy,1,0,0.0
+2025-06-16,Refunds & Booking Policy,1,0,0.0
+2025-06-18,Crew & Onboard Service,1,1,1.0
+2025-06-18,Refunds & Booking Policy,1,1,1.0
+2025-06-19,Crew & Onboard Service,1,1,1.0
+2025-06-19,Refunds & Booking Policy,1,1,1.0
+2025-06-21,Crew & Onboard Service,1,1,1.0
+2025-06-23,Refunds & Booking Policy,2,2,1.0
+2025-06-25,Delays & Cancellations,1,1,1.0
+2025-06-27,Crew & Onboard Service,1,1,1.0
+2025-06-30,Crew & Onboard Service,1,1,1.0
+2025-06-30,Refunds & Booking Policy,1,1,1.0
+2025-07-01,Delays & Cancellations,1,1,1.0
+2025-07-02,Crew & Onboard Service,1,1,1.0
+2025-07-03,Crew & Onboard Service,1,1,1.0
+2025-07-03,Delays & Cancellations,1,1,1.0
+2025-07-04,Crew & Onboard Service,1,0,0.0
+2025-07-05,Crew & Onboard Service,1,1,1.0
+2025-07-06,Delays & Cancellations,2,2,1.0
+2025-07-07,Crew & Onboard Service,1,1,1.0
+2025-07-08,Delays & Cancellations,1,1,1.0
+2025-07-09,Delays & Cancellations,2,2,1.0
+2025-07-10,Refunds & Booking Policy,1,1,1.0
+2025-07-12,Refunds & Booking Policy,1,1,1.0
+2025-07-13,Delays & Cancellations,2,2,1.0
+2025-07-13,Refunds & Booking Policy,1,1,1.0
+2025-07-14,Delays & Cancellations,2,2,1.0
+2025-07-14,Refunds & Booking Policy,3,2,0.667
+2025-07-15,Delays & Cancellations,2,2,1.0
+2025-07-16,Delays & Cancellations,1,1,1.0
+2025-07-16,Refunds & Booking Policy,1,1,1.0
+2025-07-18,Crew & Onboard Service,1,1,1.0
+2025-07-19,Crew & Onboard Service,1,1,1.0
+2025-07-19,Delays & Cancellations,2,2,1.0
+2025-07-19,Refunds & Booking Policy,1,0,0.0
+2025-07-20,Delays & Cancellations,1,1,1.0
+2025-07-21,Delays & Cancellations,3,3,1.0
+2025-07-22,Refunds & Booking Policy,2,1,0.5
+2025-07-23,Delays & Cancellations,2,2,1.0
+2025-07-23,Refunds & Booking Policy,1,1,1.0
+2025-07-25,Delays & Cancellations,1,1,1.0
+2025-07-27,Delays & Cancellations,2,1,0.5
+2025-07-28,Delays & Cancellations,1,1,1.0
+2025-07-28,Refunds & Booking Policy,1,1,1.0
+2025-07-30,Crew & Onboard Service,1,1,1.0
+2025-07-30,Delays & Cancellations,1,1,1.0
+2025-08-01,Delays & Cancellations,1,1,1.0
+2025-08-02,Delays & Cancellations,1,1,1.0
+2025-08-03,Refunds & Booking Policy,3,3,1.0
+2025-08-04,Refunds & Booking Policy,2,2,1.0
+2025-08-06,Crew & Onboard Service,1,0,0.0
+2025-08-06,Delays & Cancellations,1,1,1.0
+2025-08-08,Delays & Cancellations,1,1,1.0
+2025-08-08,Refunds & Booking Policy,1,0,0.0
+2025-08-10,Delays & Cancellations,1,1,1.0
+2025-08-10,Refunds & Booking Policy,1,1,1.0
+2025-08-12,Crew & Onboard Service,1,1,1.0
+2025-08-12,Delays & Cancellations,1,1,1.0
+2025-08-12,Refunds & Booking Policy,1,0,0.0
+2025-08-13,Crew & Onboard Service,2,2,1.0
+2025-08-14,Delays & Cancellations,2,2,1.0
+2025-08-15,Refunds & Booking Policy,1,1,1.0
+2025-08-16,Refunds & Booking Policy,1,1,1.0
+2025-08-18,Crew & Onboard Service,1,1,1.0
+2025-08-19,Delays & Cancellations,1,1,1.0
+2025-08-20,Crew & Onboard Service,1,1,1.0
+2025-08-20,Delays & Cancellations,3,3,1.0
+2025-08-21,Crew & Onboard Service,1,1,1.0
+2025-08-21,Delays & Cancellations,1,1,1.0
+2025-08-21,Refunds & Booking Policy,3,2,0.667
+2025-08-23,Crew & Onboard Service,4,2,0.5
+2025-08-23,Refunds & Booking Policy,2,1,0.5
+2025-08-24,Delays & Cancellations,1,1,1.0
+2025-08-24,Refunds & Booking Policy,4,4,1.0
+2025-08-26,Crew & Onboard Service,1,1,1.0
+2025-08-26,Refunds & Booking Policy,1,1,1.0
+2025-08-27,Delays & Cancellations,1,1,1.0
+2025-08-27,Refunds & Booking Policy,3,2,0.667
+2025-08-28,Refunds & Booking Policy,2,1,0.5
+2025-08-30,Refunds & Booking Policy,1,0,0.0
+2025-08-31,Delays & Cancellations,1,1,1.0
+2025-09-01,Refunds & Booking Policy,1,0,0.0
+2025-09-02,Crew & Onboard Service,1,1,1.0
+2025-09-02,Delays & Cancellations,1,1,1.0
+2025-09-02,Refunds & Booking Policy,3,2,0.667
+2025-09-03,Delays & Cancellations,1,1,1.0
+2025-09-03,Refunds & Booking Policy,1,1,1.0
+2025-09-04,Crew & Onboard Service,1,1,1.0
+2025-09-04,Refunds & Booking Policy,1,1,1.0
+2025-09-06,Delays & Cancellations,1,1,1.0
+2025-09-07,Crew & Onboard Service,1,1,1.0
+2025-09-07,Refunds & Booking Policy,1,1,1.0
+2025-09-08,Delays & Cancellations,1,1,1.0
+2025-09-08,Refunds & Booking Policy,1,0,0.0
+2025-09-09,Crew & Onboard Service,1,0,0.0
+2025-09-09,Delays & Cancellations,1,1,1.0
+2025-09-10,Crew & Onboard Service,1,1,1.0
+2025-09-10,Refunds & Booking Policy,1,1,1.0
+2025-09-11,Refunds & Booking Policy,2,2,1.0
+2025-09-12,Crew & Onboard Service,1,1,1.0
+2025-09-12,Delays & Cancellations,1,1,1.0
+2025-09-13,Crew & Onboard Service,1,1,1.0
+2025-09-14,Refunds & Booking Policy,1,0,0.0
+2025-09-15,Refunds & Booking Policy,1,1,1.0
+2025-09-16,Delays & Cancellations,2,2,1.0
+2025-09-16,Refunds & Booking Policy,1,1,1.0
+2025-09-17,Delays & Cancellations,1,1,1.0
+2025-09-17,Refunds & Booking Policy,1,1,1.0
+2025-09-18,Crew & Onboard Service,2,0,0.0
+2025-09-18,Refunds & Booking Policy,3,0,0.0
+2025-09-19,Delays & Cancellations,1,1,1.0
+2025-09-19,Refunds & Booking Policy,1,1,1.0
+2025-09-20,Refunds & Booking Policy,2,2,1.0
+2025-09-22,Refunds & Booking Policy,3,2,0.667
+2025-09-23,Baggage Handling,1,1,1.0
+2025-09-23,Refunds & Booking Policy,2,2,1.0
+2025-09-24,Crew & Onboard Service,1,1,1.0
+2025-09-24,Refunds & Booking Policy,1,1,1.0
+2025-09-25,Crew & Onboard Service,1,1,1.0
+2025-09-25,Refunds & Booking Policy,1,1,1.0
+2025-09-26,Delays & Cancellations,1,1,1.0
+2025-09-26,Refunds & Booking Policy,3,2,0.667
+2025-09-28,Refunds & Booking Policy,1,1,1.0
+2025-09-29,Crew & Onboard Service,1,1,1.0
+2025-09-29,Refunds & Booking Policy,1,1,1.0
+2025-09-30,Delays & Cancellations,1,1,1.0
+2025-09-30,Refunds & Booking Policy,1,1,1.0
+2025-10-01,Crew & Onboard Service,2,1,0.5
+2025-10-01,Delays & Cancellations,1,1,1.0
+2025-10-01,Refunds & Booking Policy,2,0,0.0
+2025-10-02,Delays & Cancellations,1,1,1.0
+2025-10-02,Refunds & Booking Policy,1,0,0.0
+2025-10-03,Crew & Onboard Service,1,1,1.0
+2025-10-03,Refunds & Booking Policy,1,1,1.0
+2025-10-04,Crew & Onboard Service,1,1,1.0
+2025-10-05,Crew & Onboard Service,1,1,1.0
+2025-10-05,Refunds & Booking Policy,2,1,0.5
+2025-10-08,Refunds & Booking Policy,1,1,1.0
+2025-10-09,Crew & Onboard Service,1,1,1.0
+2025-10-09,Delays & Cancellations,1,1,1.0
+2025-10-09,Refunds & Booking Policy,1,1,1.0
+2025-10-10,Crew & Onboard Service,2,2,1.0
+2025-10-11,Delays & Cancellations,1,1,1.0
+2025-10-11,Refunds & Booking Policy,1,1,1.0
+2025-10-12,Refunds & Booking Policy,1,1,1.0
+2025-10-13,Delays & Cancellations,1,1,1.0
+2025-10-13,Refunds & Booking Policy,1,1,1.0
+2025-10-14,Refunds & Booking Policy,1,0,0.0
+2025-10-15,Crew & Onboard Service,1,0,0.0
+2025-10-15,Refunds & Booking Policy,1,0,0.0
+2025-10-16,Delays & Cancellations,1,1,1.0
+2025-10-19,Refunds & Booking Policy,2,1,0.5
+2025-10-20,Refunds & Booking Policy,2,1,0.5
+2025-10-21,Delays & Cancellations,1,1,1.0
+2025-10-21,Refunds & Booking Policy,4,2,0.5
+2025-10-22,Refunds & Booking Policy,1,1,1.0
+2025-10-23,Delays & Cancellations,1,1,1.0
+2025-10-23,Refunds & Booking Policy,2,2,1.0
+2025-10-26,Crew & Onboard Service,1,1,1.0
+2025-10-26,Delays & Cancellations,2,2,1.0
+2025-10-27,Refunds & Booking Policy,1,1,1.0
+2025-10-28,Refunds & Booking Policy,1,1,1.0
+2025-10-29,Crew & Onboard Service,1,1,1.0
+2025-10-29,Refunds & Booking Policy,2,2,1.0
+2025-10-31,Crew & Onboard Service,1,1,1.0
+2025-10-31,Delays & Cancellations,1,1,1.0
+2025-10-31,Refunds & Booking Policy,2,2,1.0
+2025-11-01,Crew & Onboard Service,1,0,0.0
+2025-11-01,Refunds & Booking Policy,5,2,0.4
+2025-11-02,Refunds & Booking Policy,2,2,1.0
+2025-11-03,Delays & Cancellations,1,1,1.0
+2025-11-04,Delays & Cancellations,3,3,1.0
+2025-11-05,Delays & Cancellations,2,2,1.0
+2025-11-05,Refunds & Booking Policy,3,3,1.0
+2025-11-06,Delays & Cancellations,1,1,1.0
+2025-11-07,Crew & Onboard Service,1,1,1.0
+2025-11-07,Refunds & Booking Policy,2,1,0.5
+2025-11-08,Refunds & Booking Policy,1,1,1.0
+2025-11-09,Refunds & Booking Policy,3,1,0.333
+2025-11-10,Refunds & Booking Policy,1,1,1.0
+2025-11-11,Delays & Cancellations,1,1,1.0
+2025-11-11,Refunds & Booking Policy,1,0,0.0
+2025-11-12,Crew & Onboard Service,1,1,1.0
+2025-11-12,Refunds & Booking Policy,2,1,0.5
+2025-11-13,Refunds & Booking Policy,2,1,0.5
+2025-11-14,Delays & Cancellations,1,1,1.0
+2025-11-14,Refunds & Booking Policy,1,1,1.0
+2025-11-16,Crew & Onboard Service,1,1,1.0
+2025-11-16,Refunds & Booking Policy,2,1,0.5
+2025-11-17,Delays & Cancellations,1,1,1.0
+2025-11-17,Refunds & Booking Policy,3,2,0.667
+2025-11-19,Crew & Onboard Service,2,0,0.0
+2025-11-19,Refunds & Booking Policy,4,2,0.5
+2025-11-20,Delays & Cancellations,1,1,1.0
+2025-11-20,Refunds & Booking Policy,1,1,1.0
+2025-11-21,Crew & Onboard Service,1,1,1.0
+2025-11-21,Refunds & Booking Policy,1,1,1.0
+2025-11-22,Crew & Onboard Service,4,2,0.5
+2025-11-22,Delays & Cancellations,4,4,1.0
+2025-11-23,Crew & Onboard Service,1,0,0.0
+2025-11-23,Refunds & Booking Policy,1,1,1.0
+2025-11-24,Crew & Onboard Service,1,1,1.0
+2025-11-24,Delays & Cancellations,2,2,1.0
+2025-11-24,Refunds & Booking Policy,2,1,0.5
+2025-11-25,Refunds & Booking Policy,4,2,0.5
+2025-11-26,Refunds & Booking Policy,4,3,0.75
+2025-11-27,Crew & Onboard Service,1,1,1.0
+2025-11-27,Delays & Cancellations,1,1,1.0
+2025-11-28,Refunds & Booking Policy,1,0,0.0
+2025-11-29,Refunds & Booking Policy,2,1,0.5
+2025-11-30,Crew & Onboard Service,1,0,0.0
+2025-11-30,Refunds & Booking Policy,1,0,0.0
+2025-12-01,Delays & Cancellations,1,1,1.0
+2025-12-01,Refunds & Booking Policy,3,3,1.0
+2025-12-02,Refunds & Booking Policy,3,3,1.0
+2025-12-03,Refunds & Booking Policy,3,1,0.333
+2025-12-04,Delays & Cancellations,1,1,1.0
+2025-12-04,Refunds & Booking Policy,2,1,0.5
+2025-12-05,Crew & Onboard Service,1,1,1.0
+2025-12-05,Refunds & Booking Policy,6,3,0.5
+2025-12-07,Refunds & Booking Policy,2,2,1.0
+2025-12-08,Delays & Cancellations,2,2,1.0
+2025-12-08,Refunds & Booking Policy,1,1,1.0
+2025-12-09,Delays & Cancellations,1,1,1.0
+2025-12-09,Refunds & Booking Policy,3,3,1.0
+2025-12-10,Delays & Cancellations,1,1,1.0
+2025-12-10,Refunds & Booking Policy,1,0,0.0
+2025-12-12,Refunds & Booking Policy,1,1,1.0
+2025-12-13,Delays & Cancellations,2,2,1.0
+2025-12-13,Refunds & Booking Policy,3,2,0.667
+2025-12-14,Delays & Cancellations,1,1,1.0
+2025-12-14,Refunds & Booking Policy,3,2,0.667
+2025-12-15,Crew & Onboard Service,1,0,0.0
+2025-12-15,Refunds & Booking Policy,3,3,1.0
+2025-12-16,Delays & Cancellations,1,1,1.0
+2025-12-16,Refunds & Booking Policy,3,1,0.333
+2025-12-17,Crew & Onboard Service,3,1,0.333
+2025-12-17,Delays & Cancellations,1,1,1.0
+2025-12-17,Refunds & Booking Policy,2,2,1.0
+2025-12-19,Delays & Cancellations,2,2,1.0
+2025-12-19,Refunds & Booking Policy,2,2,1.0
+2025-12-20,Crew & Onboard Service,1,1,1.0
+2025-12-20,Delays & Cancellations,1,1,1.0
+2025-12-20,Refunds & Booking Policy,2,2,1.0
+2025-12-21,Crew & Onboard Service,2,2,1.0
+2025-12-21,Refunds & Booking Policy,2,2,1.0
+2025-12-22,Delays & Cancellations,1,1,1.0
+2025-12-22,Refunds & Booking Policy,2,0,0.0
+2025-12-23,Crew & Onboard Service,1,1,1.0
+2025-12-24,Refunds & Booking Policy,2,1,0.5
+2025-12-25,Refunds & Booking Policy,3,3,1.0
+2025-12-26,Crew & Onboard Service,3,2,0.667
+2025-12-26,Refunds & Booking Policy,3,2,0.667
+2025-12-27,Refunds & Booking Policy,1,1,1.0
+2025-12-28,Refunds & Booking Policy,2,2,1.0
+2025-12-29,Crew & Onboard Service,1,1,1.0
+2025-12-29,Delays & Cancellations,2,2,1.0
+2025-12-30,Delays & Cancellations,1,1,1.0
+2025-12-30,Refunds & Booking Policy,2,1,0.5
+2025-12-31,Refunds & Booking Policy,4,3,0.75
+2026-01-01,Crew & Onboard Service,1,1,1.0
+2026-01-01,Delays & Cancellations,1,1,1.0
+2026-01-01,Refunds & Booking Policy,1,0,0.0
+2026-01-02,Refunds & Booking Policy,1,1,1.0
+2026-01-03,Delays & Cancellations,1,1,1.0
+2026-01-03,Refunds & Booking Policy,2,1,0.5
+2026-01-04,Crew & Onboard Service,1,1,1.0
+2026-01-04,Delays & Cancellations,1,1,1.0
+2026-01-04,Refunds & Booking Policy,3,3,1.0
+2026-01-05,Crew & Onboard Service,2,2,1.0
+2026-01-05,Delays & Cancellations,2,2,1.0
+2026-01-05,Refunds & Booking Policy,3,1,0.333
+2026-01-06,Delays & Cancellations,1,1,1.0
+2026-01-06,Refunds & Booking Policy,4,3,0.75
+2026-01-07,Delays & Cancellations,1,1,1.0
+2026-01-08,Crew & Onboard Service,4,4,1.0
+2026-01-08,Delays & Cancellations,1,1,1.0
+2026-01-08,Refunds & Booking Policy,3,1,0.333
+2026-01-09,Crew & Onboard Service,1,0,0.0
+2026-01-09,Refunds & Booking Policy,1,0,0.0
+2026-01-10,Crew & Onboard Service,1,1,1.0
+2026-01-10,Delays & Cancellations,1,1,1.0
+2026-01-11,Refunds & Booking Policy,5,4,0.8
+2026-01-12,Crew & Onboard Service,1,1,1.0
+2026-01-12,Delays & Cancellations,1,1,1.0
+2026-01-12,Refunds & Booking Policy,2,2,1.0
+2026-01-13,Crew & Onboard Service,2,2,1.0
+2026-01-14,Crew & Onboard Service,1,1,1.0
+2026-01-14,Delays & Cancellations,3,2,0.667
+2026-01-14,Refunds & Booking Policy,4,4,1.0
+2026-01-15,Crew & Onboard Service,1,1,1.0
+2026-01-15,Delays & Cancellations,1,1,1.0
+2026-01-15,Refunds & Booking Policy,2,2,1.0
+2026-01-16,Crew & Onboard Service,1,1,1.0
+2026-01-16,Refunds & Booking Policy,2,2,1.0
+2026-01-18,Refunds & Booking Policy,1,0,0.0
+2026-01-19,Delays & Cancellations,1,1,1.0
+2026-01-19,Refunds & Booking Policy,1,1,1.0
+2026-01-20,Refunds & Booking Policy,1,1,1.0
+2026-01-21,Refunds & Booking Policy,1,1,1.0
+2026-01-23,Crew & Onboard Service,1,1,1.0
+2026-01-23,Delays & Cancellations,1,1,1.0
+2026-01-23,Refunds & Booking Policy,1,1,1.0
+2026-01-24,Refunds & Booking Policy,2,1,0.5
+2026-01-25,Refunds & Booking Policy,1,1,1.0
+2026-01-26,Delays & Cancellations,2,2,1.0
+2026-01-26,Refunds & Booking Policy,1,1,1.0
+2026-01-27,Crew & Onboard Service,1,1,1.0
+2026-01-27,Delays & Cancellations,2,2,1.0
+2026-01-27,Refunds & Booking Policy,2,2,1.0
+2026-01-29,Crew & Onboard Service,2,2,1.0
+2026-01-29,Refunds & Booking Policy,1,1,1.0
+2026-01-30,Crew & Onboard Service,1,1,1.0
+2026-01-30,Refunds & Booking Policy,3,3,1.0
+2026-02-01,Crew & Onboard Service,1,0,0.0
+2026-02-01,Refunds & Booking Policy,3,3,1.0
+2026-02-02,Refunds & Booking Policy,3,2,0.667
+2026-02-03,Refunds & Booking Policy,1,1,1.0
+2026-02-04,Delays & Cancellations,2,2,1.0
+2026-02-05,Refunds & Booking Policy,1,1,1.0
+2026-02-06,Refunds & Booking Policy,1,1,1.0
+2026-02-08,Crew & Onboard Service,1,0,0.0
+2026-02-08,Delays & Cancellations,1,1,1.0
+2026-02-08,Refunds & Booking Policy,3,2,0.667
+2026-02-10,Crew & Onboard Service,1,1,1.0
+2026-02-10,Delays & Cancellations,2,2,1.0
+2026-02-10,Refunds & Booking Policy,1,1,1.0
+2026-02-11,Crew & Onboard Service,1,0,0.0
+2026-02-12,Crew & Onboard Service,1,0,0.0
+2026-02-12,Delays & Cancellations,1,1,1.0
+2026-02-13,Crew & Onboard Service,2,1,0.5
+2026-02-13,Refunds & Booking Policy,3,1,0.333
+2026-02-14,Refunds & Booking Policy,3,3,1.0
+2026-02-15,Crew & Onboard Service,1,1,1.0
+2026-02-15,Delays & Cancellations,1,0,0.0
+2026-02-16,Crew & Onboard Service,1,0,0.0
+2026-02-16,Delays & Cancellations,1,1,1.0
+2026-02-17,Delays & Cancellations,1,1,1.0
+2026-02-18,Crew & Onboard Service,2,2,1.0
+2026-02-18,Delays & Cancellations,1,1,1.0
+2026-02-18,Refunds & Booking Policy,1,0,0.0
+2026-02-19,Baggage Handling,1,1,1.0
+2026-02-19,Crew & Onboard Service,1,1,1.0
+2026-02-19,Delays & Cancellations,1,1,1.0
+2026-02-19,Refunds & Booking Policy,1,0,0.0
+2026-02-20,Refunds & Booking Policy,3,1,0.333
+2026-02-21,Delays & Cancellations,1,1,1.0
+2026-02-21,Refunds & Booking Policy,1,0,0.0
+2026-02-22,Crew & Onboard Service,1,1,1.0
+2026-02-22,Refunds & Booking Policy,1,1,1.0
+2026-02-23,Delays & Cancellations,1,1,1.0
+2026-02-23,Refunds & Booking Policy,1,1,1.0
+2026-02-25,Delays & Cancellations,1,1,1.0
+2026-02-26,Refunds & Booking Policy,2,2,1.0
+2026-02-28,Refunds & Booking Policy,2,2,1.0
+2026-03-01,Crew & Onboard Service,2,2,1.0
+2026-03-01,Refunds & Booking Policy,1,1,1.0
+2026-03-02,Refunds & Booking Policy,2,2,1.0
+2026-03-03,Crew & Onboard Service,1,0,0.0
+2026-03-03,Refunds & Booking Policy,2,1,0.5
+2026-03-04,Delays & Cancellations,1,1,1.0
+2026-03-05,Refunds & Booking Policy,1,1,1.0
+2026-03-07,Refunds & Booking Policy,1,1,1.0
+2026-03-09,Crew & Onboard Service,1,1,1.0
+2026-03-09,Refunds & Booking Policy,1,1,1.0
+2026-03-10,Refunds & Booking Policy,1,1,1.0
+2026-03-11,Crew & Onboard Service,1,1,1.0
+2026-03-11,Delays & Cancellations,1,1,1.0
+2026-03-12,Refunds & Booking Policy,2,2,1.0
+2026-03-13,Delays & Cancellations,1,1,1.0
+2026-03-14,Crew & Onboard Service,1,1,1.0
+2026-03-14,Delays & Cancellations,1,1,1.0
+2026-03-14,Refunds & Booking Policy,1,1,1.0
+2026-03-15,Crew & Onboard Service,2,2,1.0
+2026-03-15,Delays & Cancellations,1,1,1.0
+2026-03-16,Baggage Handling,1,1,1.0
+2026-03-16,Crew & Onboard Service,2,2,1.0
+2026-03-16,Delays & Cancellations,1,1,1.0
+2026-03-16,Refunds & Booking Policy,4,3,0.75
+2026-03-17,Delays & Cancellations,1,1,1.0
+2026-03-19,Delays & Cancellations,1,1,1.0
+2026-03-20,Crew & Onboard Service,2,1,0.5
+2026-03-20,Refunds & Booking Policy,3,1,0.333
+2026-03-21,Crew & Onboard Service,1,1,1.0
+2026-03-21,Refunds & Booking Policy,1,1,1.0
+2026-03-23,Delays & Cancellations,3,3,1.0
+2026-03-23,Refunds & Booking Policy,1,1,1.0
+2026-03-24,Refunds & Booking Policy,1,1,1.0
+2026-03-25,Refunds & Booking Policy,3,3,1.0
+2026-03-26,Crew & Onboard Service,1,1,1.0
+2026-03-26,Refunds & Booking Policy,1,1,1.0
+2026-03-27,Crew & Onboard Service,1,1,1.0
+2026-03-27,Delays & Cancellations,1,1,1.0
+2026-03-28,Crew & Onboard Service,1,1,1.0
+2026-03-28,Refunds & Booking Policy,3,3,1.0
+2026-03-29,Refunds & Booking Policy,1,1,1.0
+2026-03-30,Delays & Cancellations,1,1,1.0
+2026-03-30,Refunds & Booking Policy,1,0,0.0
+2026-04-01,Crew & Onboard Service,1,0,0.0
+2026-04-01,Delays & Cancellations,1,1,1.0
+2026-04-01,Refunds & Booking Policy,1,0,0.0
+2026-04-02,Refunds & Booking Policy,1,1,1.0
+2026-04-03,Crew & Onboard Service,1,1,1.0
+2026-04-03,Refunds & Booking Policy,1,1,1.0
+2026-04-06,Crew & Onboard Service,2,2,1.0
+2026-04-06,Refunds & Booking Policy,4,1,0.25
+2026-04-07,Crew & Onboard Service,1,1,1.0
+2026-04-07,Delays & Cancellations,1,1,1.0
+2026-04-07,Refunds & Booking Policy,2,2,1.0
+2026-04-08,Crew & Onboard Service,2,0,0.0
+2026-04-08,Delays & Cancellations,1,1,1.0
+2026-04-08,Refunds & Booking Policy,1,1,1.0
+2026-04-09,Refunds & Booking Policy,5,3,0.6
+2026-04-12,Delays & Cancellations,1,1,1.0
+2026-04-12,Refunds & Booking Policy,2,2,1.0
+2026-04-13,Refunds & Booking Policy,1,1,1.0
+2026-04-14,Crew & Onboard Service,1,0,0.0
+2026-04-15,Refunds & Booking Policy,1,0,0.0
+2026-04-17,Crew & Onboard Service,2,2,1.0
+2026-04-19,Refunds & Booking Policy,2,2,1.0
+2026-04-20,Delays & Cancellations,1,1,1.0
+2026-04-20,Refunds & Booking Policy,1,1,1.0
+2026-04-21,Crew & Onboard Service,1,1,1.0
+2026-04-21,Refunds & Booking Policy,2,2,1.0
+2026-04-22,Refunds & Booking Policy,1,1,1.0
+2026-04-23,Delays & Cancellations,1,1,1.0
+2026-04-23,Refunds & Booking Policy,1,1,1.0
+2026-04-24,Crew & Onboard Service,1,1,1.0
+2026-04-24,Delays & Cancellations,1,1,1.0
+2026-04-24,Refunds & Booking Policy,1,1,1.0
+2026-04-25,Crew & Onboard Service,1,1,1.0
+2026-04-25,Delays & Cancellations,1,1,1.0
+2026-04-28,Delays & Cancellations,1,1,1.0
+2026-04-29,Refunds & Booking Policy,1,1,1.0
+2026-04-30,Delays & Cancellations,1,1,1.0
+2026-05-01,Refunds & Booking Policy,1,1,1.0
+2026-05-02,Baggage Handling,162,77,0.475
+2026-05-02,Crew & Onboard Service,109,67,0.615
+2026-05-02,Delays & Cancellations,150,135,0.9
+2026-05-02,Food & Beverage,1689,776,0.459
+2026-05-02,"General — feel, telegram",100,25,0.25
+2026-05-02,Refunds & Booking Policy,7,6,0.857
+2026-05-02,Refunds & Booking Policy (2),363,243,0.669
+2026-05-03,Refunds & Booking Policy,2,2,1.0
+2026-05-04,Refunds & Booking Policy,1,1,1.0
+2026-05-05,Delays & Cancellations,1,1,1.0
+2026-05-06,Crew & Onboard Service,1,0,0.0
+2026-05-06,Refunds & Booking Policy,1,1,1.0
+2026-05-07,Delays & Cancellations,1,1,1.0

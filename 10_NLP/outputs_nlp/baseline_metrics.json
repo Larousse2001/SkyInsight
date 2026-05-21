@@ -1,0 +1,50 @@
+{
+  "models": [
+    "LogisticRegression",
+    "MultinomialNB",
+    "LinearSVC"
+  ],
+  "best_model": "LinearSVC",
+  "label_source": "star_rating",
+  "results": {
+    "LogisticRegression": {
+      "accuracy": 0.7553,
+      "macro_f1": 0.6418,
+      "cv_f1_macro_mean": 0.6371,
+      "cv_f1_macro_std": 0.0059
+    },
+    "MultinomialNB": {
+      "accuracy": 0.5075,
+      "macro_f1": 0.4725,
+      "cv_f1_macro_mean": 0.5394,
+      "cv_f1_macro_std": 0.0079
+    },
+    "LinearSVC": {
+      "accuracy": 0.7898,
+      "macro_f1": 0.6673,
+      "cv_f1_macro_mean": 0.6373,
+      "cv_f1_macro_std": 0.0171
+    }
+  },
+  "smote": {
+    "k_neighbors": 5,
+    "train_before": {
+      "negative": 1310,
+      "positive": 1191,
+      "neutral": 160
+    },
+    "train_after": {
+      "negative": 1310,
+      "positive": 1310,
+      "neutral": 1310
+    }
+  },
+  "n_features": 4000,
+  "n_train": 2661,
+  "n_test": 666,
+  "artifacts": {
+    "vectorizer": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\models\\baseline_vectorizer.joblib",
+    "model": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\models\\baseline_best_model.joblib",
+    "classes": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\models\\baseline_classes.joblib"
+  }
+}

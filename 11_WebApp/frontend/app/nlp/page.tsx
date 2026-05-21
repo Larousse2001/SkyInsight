@@ -32,10 +32,10 @@ type Stats = {
 type Distributions = {
   vader: { label: string; count: number }[];
   bert: { label: string; count: number }[];
-  topics: { topic_id: number; count: number }[];
+  topics: { topic_id: number; count: number; topic_label?: string }[];
   vader_histogram: { bin: string; left: number; right: number; count: number }[];
 };
-type Topic = { topic_id: number; top_words?: string; top_terms?: string };
+type Topic = { topic_id: number; topic_label?: string; top_words?: string; top_terms?: string };
 type Entity = { entity?: string; text?: string; label: string; count: number };
 type Review = {
   text_clean: string;
@@ -44,8 +44,29 @@ type Review = {
   sent_bert_label?: string;
   sent_bert_score?: number;
   topic_id?: number;
+  topic_label?: string;
   entities?: string;
 };
+type Baseline = {
+  available: boolean;
+  message?: string;
+  models?: string[];
+  best_model?: string;
+  label_source?: string;
+  results?: Record<string, { accuracy: number; macro_f1: number; cv_f1_macro_mean?: number; cv_f1_macro_std?: number }>;
+  smote?: {
+    k_neighbors: number;
+    train_before: Record<string, number>;
+    train_after: Record<string, number>;
+  };
+  n_features?: number;
+  n_train?: number;
+  n_test?: number;
+};
+type AspectRow = { topic_label: string; sent_bert_label: string; count: number };
+type AspectResponse = { available: boolean; items: AspectRow[] };
+type TimeseriesRow = { date: string; topic_label: string; count: number; neg: number; neg_share: number };
+type TimeseriesResponse = { available: boolean; items: TimeseriesRow[] };
 
 const COLORS = ["#1A3263", "#547792", "#FFC570", "#EFD2B0", "#3F5E78", "#28456A", "#FFD693"];
 
@@ -192,12 +213,108 @@ function buildLongTerm(a: AnalysisShape): string[] {
   return out;
 }
 
+// ── Aspect heatmap + time-series components ─────────────────────────────────
+function AspectHeatmap({ items }: { items: { topic_label: string; sent_bert_label: string; count: number }[] }) {
+  const topicSet = Array.from(new Set(items.map((i) => i.topic_label))).filter(Boolean);
+  const sentSet  = Array.from(new Set(items.map((i) => i.sent_bert_label))).filter(Boolean);
+  const matrix: Record<string, Record<string, number>> = {};
+  const rowTotals: Record<string, number> = {};
+  topicSet.forEach((t) => { matrix[t] = {}; rowTotals[t] = 0; });
+  items.forEach((it) => {
+    matrix[it.topic_label][it.sent_bert_label] = (matrix[it.topic_label][it.sent_bert_label] || 0) + it.count;
+    rowTotals[it.topic_label] = (rowTotals[it.topic_label] || 0) + it.count;
+  });
+  const orderedTopics = topicSet.sort((a, b) => (rowTotals[b] ?? 0) - (rowTotals[a] ?? 0));
+  const preferred = ["NEGATIVE", "POSITIVE", "negative", "neutral", "positive"];
+  const orderedSent = preferred.filter((s) => sentSet.includes(s));
+  for (const s of sentSet) if (!orderedSent.includes(s)) orderedSent.push(s);
+
+  function colorFor(share: number, sent: string) {
+    const s = sent.toUpperCase();
+    const a = Math.min(1, share * 1.1 + 0.05);
+    if (s.includes("NEG")) return `rgba(217, 83, 79, ${a})`;
+    if (s.includes("POS")) return `rgba(92, 184, 92, ${a})`;
+    return `rgba(84, 119, 146, ${a})`;
+  }
+
+  return (
+    <div className="mt-4 overflow-x-auto">
+      <table className="min-w-full border-separate border-spacing-1 text-xs">
+        <thead>
+          <tr>
+            <th className="text-left text-steel font-semibold px-2 py-1">Topic</th>
+            {orderedSent.map((s) => (
+              <th key={s} className="text-center text-steel font-semibold px-2 py-1">{s}</th>
+            ))}
+            <th className="text-right text-steel font-semibold px-2 py-1">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orderedTopics.map((t) => {
+            const total = rowTotals[t] || 0;
+            return (
+              <tr key={t}>
+                <td className="px-2 py-1 font-medium text-navy whitespace-nowrap">{t}</td>
+                {orderedSent.map((s) => {
+                  const c = matrix[t][s] || 0;
+                  const share = total ? c / total : 0;
+                  return (
+                    <td key={s} className="text-center px-2 py-1 rounded"
+                        style={{ background: c ? colorFor(share, s) : "#f5f5f5", minWidth: 80 }}>
+                      <span className="font-semibold text-navy">{c.toLocaleString()}</span>
+                      <span className="ml-1 text-[10px] text-steel">{(share * 100).toFixed(0)}%</span>
+                    </td>
+                  );
+                })}
+                <td className="text-right px-2 py-1 text-steel">{total.toLocaleString()}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function TopicTimeSeries({ items }: { items: { date: string; topic_label: string; count: number; neg: number; neg_share: number }[] }) {
+  const topics = Array.from(new Set(items.map((i) => i.topic_label))).filter(Boolean).slice(0, 6);
+  const dates  = Array.from(new Set(items.map((i) => i.date))).sort();
+  const data = dates.map((d) => {
+    const row: any = { date: d };
+    for (const t of topics) {
+      const m = items.find((i) => i.date === d && i.topic_label === t);
+      row[t] = m ? Math.round(m.neg_share * 100) : null;
+    }
+    return row;
+  });
+
+  return (
+    <div className="mt-4 h-72">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} margin={{ left: 8, right: 8, bottom: 40 }}>
+          <CartesianGrid stroke="#EFD2B0" strokeDasharray="3 3" />
+          <XAxis dataKey="date" tick={{ fill: "#547792", fontSize: 10 }} angle={-25} textAnchor="end" height={50} />
+          <YAxis tick={{ fill: "#547792", fontSize: 11 }} label={{ value: "% negative", angle: -90, position: "insideLeft", fill: "#547792" }} />
+          <Tooltip />
+          <Legend wrapperStyle={{ fontSize: 11 }} />
+          {topics.map((t, i) => (
+            <Bar key={t} dataKey={t} stackId="a" fill={COLORS[i % COLORS.length]} />
+          ))}
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
 export default function NlpPage() {
   // ── data state ─────────────────────────────────────────────────────────────
   const [stats, setStats] = useState<Stats | null>(null);
   const [dist, setDist] = useState<Distributions | null>(null);
   const [topics, setTopics] = useState<Topic[]>([]);
   const [entities, setEntities] = useState<Entity[]>([]);
+  const [baseline, setBaseline] = useState<Baseline | null>(null);
+  const [aspect, setAspect] = useState<AspectResponse | null>(null);
+  const [timeseries, setTimeseries] = useState<TimeseriesResponse | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [reviewsTotal, setReviewsTotal] = useState(0);
   const [page, setPage] = useState(1);
@@ -222,12 +339,18 @@ export default function NlpPage() {
       jget<Distributions>("/distributions"),
       jget<Topic[]>("/topics"),
       jget<Entity[]>("/entities?limit=25"),
+      jget<Baseline>("/baseline").catch(() => ({ available: false } as Baseline)),
+      jget<AspectResponse>("/aspect-sentiment").catch(() => ({ available: false, items: [] } as AspectResponse)),
+      jget<TimeseriesResponse>("/timeseries").catch(() => ({ available: false, items: [] } as TimeseriesResponse)),
     ])
-      .then(([s, d, t, e]) => {
+      .then(([s, d, t, e, b, a, ts]) => {
         setStats(s);
         setDist(d);
         setTopics(t);
         setEntities(e);
+        setBaseline(b);
+        setAspect(a);
+        setTimeseries(ts);
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
@@ -287,7 +410,7 @@ export default function NlpPage() {
     const themeAgg: Record<string, { theme: Theme; volume: number; topicIds: number[] }> = {};
     topics.forEach((t) => {
       const words = t.top_words ?? t.top_terms ?? "";
-      const th = classifyTopic(words);
+      const th = classifyTopic(words) ?? (t.topic_label ? { key: t.topic_label, label: t.topic_label, tone: "neutral", keywords: [] } as Theme : null);
       if (!th) return;
       const vol = topicCount[t.topic_id] ?? 0;
       if (!themeAgg[th.key]) themeAgg[th.key] = { theme: th, volume: 0, topicIds: [] };
@@ -339,6 +462,14 @@ export default function NlpPage() {
           </p>
           <p className="mt-2 text-xs text-red-700/70">Error: {error}</p>
         </Card>
+      )}
+
+      {loading && !error && (
+        <div className="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 animate-pulse">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="h-24 rounded-2xl bg-brand-50 ring-1 ring-brand-100" />
+          ))}
+        </div>
       )}
 
       {/* KPI cards */}
@@ -398,7 +529,7 @@ export default function NlpPage() {
             <p className="mt-3 rounded-lg bg-red-50 p-3 text-xs text-red-700">{analyzeErr}</p>
           )}
           {analyzeOut && (
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
               <div className="rounded-xl border border-brand-100 bg-brand-50 p-4">
                 <p className="text-xs uppercase tracking-widest text-steel">VADER</p>
                 <p className="mt-1 text-2xl font-bold text-navy capitalize">{analyzeOut.vader.label}</p>
@@ -411,6 +542,23 @@ export default function NlpPage() {
                 <p className="text-xs uppercase tracking-widest opacity-80">DistilBERT</p>
                 <p className="mt-1 text-2xl font-bold capitalize">{analyzeOut.distilbert.label.toLowerCase()}</p>
                 <p className="mt-1 text-xs opacity-80">score {analyzeOut.distilbert.score.toFixed(3)}</p>
+              </div>
+              <div className="rounded-xl border border-brand-100 bg-white p-4">
+                <p className="text-xs uppercase tracking-widest text-steel">Baseline (TF-IDF)</p>
+                {analyzeOut.baseline ? (
+                  <>
+                    <p className="mt-1 text-2xl font-bold text-navy capitalize">{analyzeOut.baseline.label}</p>
+                    <p className="mt-1 text-xs text-steel">{analyzeOut.baseline.model}</p>
+                    {analyzeOut.baseline.proba && (
+                      <p className="mt-1 text-[11px] text-steel">
+                        {Object.entries(analyzeOut.baseline.proba as Record<string, number>)
+                          .map(([k, v]) => `${k} ${(v * 100).toFixed(0)}%`).join(" · ")}
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <p className="mt-2 text-xs text-steel">Run notebook cell 4c to enable.</p>
+                )}
               </div>
             </div>
           )}
@@ -455,9 +603,16 @@ export default function NlpPage() {
           <h3 className="text-lg font-semibold text-navy">Topic volume</h3>
           <div className="mt-3 h-64">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={dist?.topics ?? []}>
+              <BarChart data={dist?.topics ?? []} margin={{ left: 8, right: 8, bottom: 60 }}>
                 <CartesianGrid stroke="#EFD2B0" strokeDasharray="3 3" />
-                <XAxis dataKey="topic_id" tick={{ fill: "#547792", fontSize: 11 }} />
+                <XAxis
+                  dataKey={(d: any) => d.topic_label || `#${d.topic_id}`}
+                  tick={{ fill: "#547792", fontSize: 10 }}
+                  angle={-20}
+                  textAnchor="end"
+                  interval={0}
+                  height={70}
+                />
                 <YAxis tick={{ fill: "#547792", fontSize: 11 }} />
                 <Tooltip />
                 <Bar dataKey="count" fill="#FFC570" radius={[4, 4, 0, 0]} />
@@ -466,6 +621,93 @@ export default function NlpPage() {
           </div>
         </Card>
       </div>
+
+      {/* BASELINE ML BENCHMARK */}
+      {baseline?.available && baseline.results && (
+        <div className="mt-10">
+          <Card>
+            <div className="flex items-center gap-2">
+              <Target className="h-5 w-5 text-steel" />
+              <h3 className="text-lg font-semibold text-navy">Baseline ML benchmark</h3>
+            </div>
+            <p className="mt-1 text-sm text-steel">
+              Transparent reference point before running heavy NLP models — Logistic Regression and Multinomial
+              Naive Bayes on TF-IDF features, with <b>SMOTE</b> applied to balance classes in training.
+            </p>
+
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {Object.entries(baseline.results).map(([name, m]) => (
+                <div key={name} className="rounded-xl bg-brand-50 p-4 ring-1 ring-brand-100">
+                  <p className="text-xs uppercase tracking-widest text-steel">{name}</p>
+                  <p className="mt-2 text-2xl font-bold text-navy">{(m.accuracy * 100).toFixed(1)}%</p>
+                  <p className="mt-1 text-xs text-steel">accuracy · macro-F1 {m.macro_f1.toFixed(3)}</p>
+                </div>
+              ))}
+              {baseline.smote && (
+                <div className="rounded-xl bg-white p-4 ring-1 ring-brand-100 sm:col-span-2">
+                  <p className="text-xs uppercase tracking-widest text-steel">SMOTE class balancing</p>
+                  <p className="mt-2 text-xs text-steel">
+                    k_neighbors = <b>{baseline.smote.k_neighbors}</b> ·{" "}
+                    train rows {baseline.n_train?.toLocaleString()} · test rows {baseline.n_test?.toLocaleString()} ·{" "}
+                    {baseline.n_features?.toLocaleString()} TF-IDF features
+                  </p>
+                  <div className="mt-2 grid gap-2 text-xs sm:grid-cols-2">
+                    <div>
+                      <p className="font-semibold text-navy">Before SMOTE (train)</p>
+                      <p className="text-steel">
+                        {Object.entries(baseline.smote.train_before).map(([k, v]) => `${k}: ${v}`).join(" · ")}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-navy">After SMOTE (train)</p>
+                      <p className="text-steel">
+                        {Object.entries(baseline.smote.train_after).map(([k, v]) => `${k}: ${v}`).join(" · ")}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <p className="mt-3 text-xs text-steel">
+              These baselines exist so the DistilBERT / LDA results below can be evaluated against a simple,
+              fast, explainable reference — not as the final model.
+            </p>
+          </Card>
+        </div>
+      )}
+
+      {/* ASPECT-BASED SENTIMENT HEATMAP */}
+      {aspect?.available && aspect.items.length > 0 && (
+        <div className="mt-10">
+          <Card>
+            <div className="flex items-center gap-2">
+              <Hash className="h-5 w-5 text-steel" />
+              <h3 className="text-lg font-semibold text-navy">Aspect-based sentiment — Topic × DistilBERT</h3>
+            </div>
+            <p className="mt-1 text-sm text-steel">
+              Each row shows how the transformer judged reviews assigned to that LDA topic.
+              Use to spot pain points (e.g. high <span className="text-rose-600 font-medium">NEGATIVE</span> share on Delays).
+            </p>
+            <AspectHeatmap items={aspect.items} />
+          </Card>
+        </div>
+      )}
+
+      {/* TOPIC TIME SERIES */}
+      {timeseries?.available && timeseries.items.length > 0 && (
+        <div className="mt-10">
+          <Card>
+            <div className="flex items-center gap-2">
+              <Clock className="h-5 w-5 text-steel" />
+              <h3 className="text-lg font-semibold text-navy">Negative-share trend by topic</h3>
+            </div>
+            <p className="mt-1 text-sm text-steel">
+              Daily share of DistilBERT-NEGATIVE reviews per topic. Early-warning signal for theme escalation.
+            </p>
+            <TopicTimeSeries items={timeseries.items} />
+          </Card>
+        </div>
+      )}
 
       {/* TOPICS + ENTITIES */}
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -477,10 +719,15 @@ export default function NlpPage() {
           <ul className="mt-4 space-y-2">
             {topics.map((t) => (
               <li key={t.topic_id} className="rounded-xl border border-brand-100 bg-white/70 p-3">
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <Pill tone="navy">#{t.topic_id}</Pill>
-                  <span className="text-sm text-steel font-mono break-all">{t.top_words ?? t.top_terms}</span>
+                  {t.topic_label && (
+                    <span className="text-sm font-semibold text-navy">{t.topic_label}</span>
+                  )}
                 </div>
+                <p className="mt-1.5 text-xs text-steel font-mono break-all">
+                  {t.top_words ?? t.top_terms}
+                </p>
               </li>
             ))}
             {topics.length === 0 && <li className="text-sm text-steel">No topics available.</li>}
@@ -686,7 +933,9 @@ export default function NlpPage() {
               >
                 <option value="">All topics</option>
                 {topics.map((t) => (
-                  <option key={t.topic_id} value={t.topic_id}>Topic #{t.topic_id}</option>
+                  <option key={t.topic_id} value={t.topic_id}>
+                    {t.topic_label ? t.topic_label : `Topic #${t.topic_id}`}
+                  </option>
                 ))}
               </select>
             </div>
@@ -706,7 +955,10 @@ export default function NlpPage() {
                   <div className="mt-3 flex flex-wrap gap-1.5 text-[11px]">
                     {r.sent_vader_label && <Pill tone="navy">VADER: {r.sent_vader_label}</Pill>}
                     {r.sent_bert_label && <Pill tone="steel">BERT: {r.sent_bert_label.toLowerCase()}</Pill>}
-                    {r.topic_id !== undefined && r.topic_id !== null && <Pill tone="gold">Topic #{r.topic_id}</Pill>}
+                    {r.topic_label
+                      ? <Pill tone="gold">{r.topic_label}</Pill>
+                      : (r.topic_id !== undefined && r.topic_id !== null && <Pill tone="gold">Topic #{r.topic_id}</Pill>)
+                    }
                   </div>
                 </div>
               );

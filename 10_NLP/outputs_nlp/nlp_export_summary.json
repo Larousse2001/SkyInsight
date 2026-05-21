@@ -1,33 +1,109 @@
 {
-  "rows": 3328,
+  "rows": 3327,
   "columns": [
     "airline",
+    "data_source",
     "date",
     "rating",
+    "rating_norm",
     "review_text",
     "source",
+    "true_label",
     "verified_purchase",
     "text_clean",
     "text_nostop",
+    "eda_label",
+    "char_len",
+    "word_len",
     "sent_vader",
     "sent_vader_label",
     "sent_bert_label",
     "sent_bert_score",
     "topic_id",
+    "topic_prob",
+    "topic_label",
     "entities"
   ],
   "text_column": "review_text",
-  "tfidf_matrix_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\tfidf_matrix.npz",
-  "embeddings_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\text_embeddings.npy",
-  "topics_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\lda_topics.csv",
-  "ner_path": "C:\\Users\\achre\\Downloads\\Esprit\\DL\\SkyInsight\\10_NLP\\outputs_nlp\\top_entities.csv",
+  "tfidf_matrix_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\tfidf_matrix.npz",
+  "embeddings_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\text_embeddings.npy",
+  "topics_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\lda_topics.csv",
+  "ner_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\top_entities.csv",
+  "aspect_sentiment_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\aspect_sentiment.csv",
+  "topic_timeseries_path": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\topic_timeseries.csv",
+  "n_topics": 7,
+  "topic_labels": {
+    "0": "Baggage Handling",
+    "1": "Refunds & Booking Policy",
+    "2": "Crew & Onboard Service",
+    "3": "Food & Beverage",
+    "4": "Delays & Cancellations",
+    "5": "Refunds & Booking Policy (2)",
+    "6": "General \u2014 feel, telegram"
+  },
   "vader_distribution": {
-    "positive": 2396,
-    "negative": 877,
-    "neutral": 55
+    "positive": 2390,
+    "negative": 883,
+    "neutral": 54
   },
   "bert_distribution": {
-    "NEGATIVE": 1949,
-    "POSITIVE": 1379
+    "NEGATIVE": 1927,
+    "POSITIVE": 1400
+  },
+  "true_label_distribution": {
+    "negative": 1638,
+    "positive": 1489,
+    "neutral": 200
+  },
+  "vader_bert_kappa": 0.39552182084942056,
+  "baseline": {
+    "models": [
+      "LogisticRegression",
+      "MultinomialNB",
+      "LinearSVC"
+    ],
+    "best_model": "LinearSVC",
+    "label_source": "star_rating",
+    "results": {
+      "LogisticRegression": {
+        "accuracy": 0.7553,
+        "macro_f1": 0.6418,
+        "cv_f1_macro_mean": 0.6371,
+        "cv_f1_macro_std": 0.0059
+      },
+      "MultinomialNB": {
+        "accuracy": 0.5075,
+        "macro_f1": 0.4725,
+        "cv_f1_macro_mean": 0.5394,
+        "cv_f1_macro_std": 0.0079
+      },
+      "LinearSVC": {
+        "accuracy": 0.7898,
+        "macro_f1": 0.6673,
+        "cv_f1_macro_mean": 0.6373,
+        "cv_f1_macro_std": 0.0171
+      }
+    },
+    "smote": {
+      "k_neighbors": 5,
+      "train_before": {
+        "negative": 1310,
+        "positive": 1191,
+        "neutral": 160
+      },
+      "train_after": {
+        "negative": 1310,
+        "positive": 1310,
+        "neutral": 1310
+      }
+    },
+    "n_features": 4000,
+    "n_train": 2661,
+    "n_test": 666,
+    "artifacts": {
+      "vectorizer": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\models\\baseline_vectorizer.joblib",
+      "model": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\models\\baseline_best_model.joblib",
+      "classes": "C:\\Users\\moham\\SkyInsight\\10_NLP\\outputs_nlp\\models\\baseline_classes.joblib"
+    }
   }
 }

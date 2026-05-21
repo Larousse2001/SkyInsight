@@ -1,9 +1,8 @@
-topic_id,top_terms
-0,"service, good, poor, excellent, flight, average, check, baggage, food, seat"
-1,"flight, airlines, delta, policy, change, ticket, american, cancellation, united, https"
-2,"flight, seat, crew, aircraft, cabin, business, class, food, service, seats"
-3,"flight, airport, hours, told, gate, luggage, delayed, check, plane, airline"
-4,"airlines, singapore, united, airline, flight, american, flying, bag, travel, carry"
-5,"trip, air, travel, flight, airline, points, flights, business, time, reviews"
-6,"type, service, seat, class, staff, route, traveller, flown, date, money"
-7,"amp, telegram, zone18xxx, airlines, united, flights, https, travel, cock, preview"
+topic_id,topic_label,top_terms,stability_jaccard
+0,Baggage Handling,"carry, policy, change, bag, luggage, check, need, review, cancellation, experience",0.605
+1,Refunds & Booking Policy,"service, type, seat, class, traveller, food, economy, ground, route, money",0.605
+2,Crew & Onboard Service,"seat, class, check, business, passenger, experience, time, crew, cabin, staff",0.605
+3,Food & Beverage,"service, good, poor, excellent, average, check, food, drink, room, baggage",0.605
+4,Delays & Cancellations,"delay, cancel, tell, book, customer, time, ticket, hotel, delta, luggage",0.605
+5,Refunds & Booking Policy (2),"review, book, point, card, look, time, good, want, like, experience",0.605
+6,"General — feel, telegram","feel, telegram, body, video, eye, moan, cock, close, pleasure, aviation",0.605

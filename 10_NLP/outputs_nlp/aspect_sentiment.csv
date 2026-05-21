@@ -1,0 +1,15 @@
+topic_label,sent_bert_label,count
+Baggage Handling,NEGATIVE,80
+Baggage Handling,POSITIVE,85
+Crew & Onboard Service,NEGATIVE,184
+Crew & Onboard Service,POSITIVE,77
+Delays & Cancellations,NEGATIVE,310
+Delays & Cancellations,POSITIVE,18
+Food & Beverage,NEGATIVE,776
+Food & Beverage,POSITIVE,913
+"General — feel, telegram",NEGATIVE,25
+"General — feel, telegram",POSITIVE,75
+Refunds & Booking Policy,NEGATIVE,309
+Refunds & Booking Policy,POSITIVE,112
+Refunds & Booking Policy (2),NEGATIVE,243
+Refunds & Booking Policy (2),POSITIVE,120
